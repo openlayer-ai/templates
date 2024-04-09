@@ -1,0 +1,29 @@
+{
+    "taskType": "tabular-classification",
+    "model": {
+        "modelType": "full",
+        "runtime": "python_3_10",
+        "installCommand": "pip install uv; VIRTUAL_ENV=$(python -c 'import sys; print(sys.prefix)') uv pip install -r model/requirements.txt",
+        "batchCommand": "python model/openlayer_run.py --dataset-path {{ path }} --dataset-name {{ name }}",
+        "outputDirectory": "output",
+        "architectureType": "sklearn"
+    },
+    "datasets": [
+        {
+            "name": "validation",
+            "path": "dataset.csv",
+            "label": "validation",
+            "classNames": [
+                "Retained",
+                "Exited",
+                "RandomLabel"
+            ],
+            "categoricalFeatureNames": [
+                "Gender",
+                "Geography"
+            ],
+            "labelColumnName": "churn",
+            "sep": ","
+        }
+    ]
+}
