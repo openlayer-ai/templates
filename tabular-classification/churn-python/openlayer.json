@@ -4,19 +4,41 @@
         "modelType": "full",
         "runtime": "python_3_10",
         "installCommand": "pip install uv; VIRTUAL_ENV=$(python -c 'import sys; print(sys.prefix)') uv pip install -r model/requirements.txt",
-        "batchCommand": "python model/openlayer_run.py --dataset-path {{ path }} --dataset-name {{ name }}",
+        "batchCommand": "python model/openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
         "outputDirectory": "output",
-        "architectureType": "sklearn"
+        "architectureType": "sklearn",
+        "classNames": [
+            "Retained",
+            "Exited"
+        ],
+        "categoricalFeatureNames": [
+            "Gender",
+            "Geography"
+        ]
     },
     "datasets": [
         {
             "name": "validation",
-            "path": "dataset.csv",
+            "path": "validation.csv",
             "label": "validation",
             "classNames": [
                 "Retained",
-                "Exited",
-                "RandomLabel"
+                "Exited"
+            ],
+            "categoricalFeatureNames": [
+                "Gender",
+                "Geography"
+            ],
+            "labelColumnName": "churn",
+            "sep": ","
+        },
+        {
+            "name": "training",
+            "path": "training.csv",
+            "label": "training",
+            "classNames": [
+                "Retained",
+                "Exited"
             ],
             "categoricalFeatureNames": [
                 "Gender",
