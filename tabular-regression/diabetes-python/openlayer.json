@@ -1,0 +1,26 @@
+{
+    "taskType": "tabular-regression",
+    "model": {
+        "modelType": "full",
+        "runtime": "python_3_10",
+        "installCommand": "pip install -r model/requirements/inference.txt",
+        "batchCommand": "python model/openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
+        "outputDirectory": "output",
+        "architectureType": "sklearn",
+        "categoricalFeatureNames": []
+    },
+    "datasets": [
+        {
+            "name": "validation",
+            "path": "validation.csv",
+            "label": "validation",
+            "targetColumnName": "target"
+        },
+        {
+            "name": "training",
+            "path": "training.csv",
+            "label": "training",
+            "targetColumnName": "target"
+        }
+    ]
+}
