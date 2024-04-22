@@ -38,7 +38,7 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 ## How it works
 
 Decorating the methods we're interested in tracing with `@trace` from [Openlayer's Python SDK](https://reference.openlayer.com/reference/index.html) allows us to keep track of their inputs, outputs, metadata, and more. Furthermore, wrapping the OpenAI client with `OpenAIMonitor` from [Openlayer's Python SDK](https://reference.openlayer.com/reference/index.html) enables tracing for
-every chat completion call. All of this is done in [`/app/model/rag_pipeline.py`](/rag-python/app/model/rag_pipeline.py), where our RAG pipeline is defined.
+every chat completion call. All of this is done in [`app/model/rag_pipeline.py`](/python/llms/rag-qa/app/model/rag_pipeline.py), where our RAG pipeline is defined.
 
 ### Monitoring
 
@@ -46,7 +46,7 @@ All production requests that go through the decorated code are automatically str
 
 ### Development
 
-The [`openlayer.json`](/rag-python/openlayer.json) config file and the [`openlayer_run.py`](/rag-python/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
+The [`openlayer.json`](/python/llms/rag-qa/openlayer.json) config file and the [`openlayer_run.py`](/python/llms/rag-qa/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
 
 With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
 
