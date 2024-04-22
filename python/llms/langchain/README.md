@@ -38,7 +38,7 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 ## How it works
 
 Passing in Openlayer's callback handler from [Openlayer's Python SDK](https://reference.openlayer.com/reference/index.html) enables tracing for
-every chat completion call. This is done in [`/app/model/langchain_model.py`](/openai-python/app/model/langchain_model.py), where our LLM is defined.
+every chat completion call. This is done in [`app/model/langchain_model.py`](/python/llms/langchain/app/model/langchain_model.py), where our LLM is defined.
 
 ### Monitoring
 
@@ -46,7 +46,7 @@ All production requests that go through the code that uses the `OpenlayerHandler
 
 ### Development
 
-The [`openlayer.json`](/openai-python/openlayer.json) config file and the [`openlayer_run.py`](/openai-python/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
+The [`openlayer.json`](/python/llms/langchain/openlayer.json) config file and the [`openlayer_run.py`](/python/llms/langchain/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
 
 With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
 
