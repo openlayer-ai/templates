@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>OpenAI + Openlayer app</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+<body>
+  <div class="header">
+    <img src="{{ url_for('static', filename='icons.png') }}" alt="OpenAI + Openlayer Logo" />
+    <div class="demo-text">OpenAI + Openlayer</div>
+  </div>
+  <p>All model interactions are monitored by Openlayer. You can see the requests on the <a
+      href="https://app.openlayer.com/" target="_blank">Openlayer platform</a>.</p>
+  <p style="color:gray"><small>App based on the <a href="https://github.com/openai/openai-quickstart-python"
+        target="_blank">OpenAI
+        Flask example</a></small></p>
+  <div class="chat-container">
+    {% for message in chat_history %}
+    <div class="message-role {{ 'user' if message.role == 'user' else '' }}">
+      {{ message.role.capitalize() }}
+    </div>
+    <div class="{{ 'user-message' if message.role == 'user' else 'assistant-message' }}">
+      {{ message.content }}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="message-input-container">
+    <form action="/chat" method="post">
+      <textarea name="message" placeholder="Type your message here..." required></textarea>
+      <div class="button-group">
+        <button type="submit" id="send-btn">&#x2191;</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    document
+      .querySelector("form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        const messageInput = document.querySelector(
+          'textarea[name="message"]'
+        );
+        const message = messageInput.value.trim();
+        const chatContainer = document.querySelector(".chat-container");
+
+        // Append the user's message to the chat container
+        if (message) {
+          const roleDiv = document.createElement("div");
+          roleDiv.classList.add("message-role");
+          roleDiv.classList.add("user");
+
+          roleDiv.textContent = "User";
+          chatContainer.appendChild(roleDiv);
+
+          const userMessageDiv = document.createElement("div");
+          userMessageDiv.classList.add("user-message");
+          userMessageDiv.textContent = message;
+          chatContainer.appendChild(userMessageDiv);
+        }
+
+        // Clear the message input
+        messageInput.value = "";
+
+        // Send the user's message to the server using AJAX
+        fetch("/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: message }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              const roleDiv = document.createElement("div");
+              roleDiv.classList.add("message-role");
+              roleDiv.classList.add("assistant");
+
+              roleDiv.textContent = "Assistant";
+              chatContainer.appendChild(roleDiv);
+
+              // Prepare the assistant's message container
+              const assistantMessageDiv = document.createElement("div");
+              assistantMessageDiv.classList.add("assistant-message");
+              chatContainer.appendChild(assistantMessageDiv);
+
+              // Open a connection to receive streamed responses
+              const eventSource = new EventSource("/stream");
+              eventSource.onmessage = function (event) {
+                const currentText = assistantMessageDiv.textContent;
+                const newText = event.data;
+                const lastChar = currentText.slice(-1);
+
+                // Check if we need to add a space (streamed chunks might be missing it)
+                if (/[.,!?]/.test(lastChar) && newText.charAt(0) !== " ") {
+                  assistantMessageDiv.textContent += " " + newText;
+                } else {
+                  assistantMessageDiv.textContent += newText;
+                }
+
+                // Scroll to the bottom of the chat container
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+              };
+              eventSource.onerror = function () {
+                eventSource.close();
+              };
+            }
+          });
+      });
+
+    // Add event listener for the clear button
+    document
+      .getElementById("clear-btn")
+      .addEventListener("click", function () {
+        // Clear the chat container
+        const chatContainer = document.querySelector(".chat-container");
+        chatContainer.innerHTML = "";
+
+        // Re-insert the initial system message as an assistant message
+        const systemMessageDiv = document.createElement("div");
+        systemMessageDiv.classList.add("assistant-message"); // Use the assistant message class
+        systemMessageDiv.textContent = "You are a helpful assistant.";
+        chatContainer.appendChild(systemMessageDiv);
+
+        // Reset the chat history on the server
+        fetch("/reset", {
+          method: "POST",
+        }).then((response) => {
+          if (response.ok) {
+            console.log("Chat history has been reset.");
+          }
+        });
+      });
+  </script>
+</body>
+
+</html>
