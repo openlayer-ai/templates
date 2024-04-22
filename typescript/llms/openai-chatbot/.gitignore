@@ -94,3 +94,7 @@ out/
 # Build
 dist/
 .vercel
+
+
+# Openlayer
+.openlayer
