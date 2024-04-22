@@ -1,0 +1,22 @@
+name: Openlayer Tests
+env:
+  OPENLAYER_PROJECT_ID: ${{ secrets.OPENLAYER_PROJECT_ID }}
+  # Anything else you need for your AI to generate outputs
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Openlayer CLI
+        run: curl -o- "https://downloads.openlayer.com/cli/install/linux_arm64.sh" | sh
+      - name: Install Your Requirements
+        run: openlayer install
+      - name: Generate Outputs
+        run: openlayer batch --api-key=${{ secrets.OPENLAYER_API_KEY }}
+      - name: Push Project Artifacts to Openlayer
+        run: openlayer push --message ${{ github.event.head_commit.message }} --api-key=${{ secrets.OPENLAYER_API_KEY }}

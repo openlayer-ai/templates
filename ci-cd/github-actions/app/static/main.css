@@ -1,0 +1,317 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src:
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ColfaxAI";
+  src:
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body,
+input {
+  line-height: 24px;
+  color: #353740;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  width: 34px;
+}
+
+h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+
+.chat-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 160px;
+  margin-bottom: 20px;
+  overflow: auto;
+}
+
+.user-message,
+.assistant-message {
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: 16px;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #f7f7f8;
+}
+
+.assistant-message {
+  align-self: flex-start;
+  background-color: #ebfaeb;
+}
+
+.message-input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+.message-input-container form {
+  display: flex; /* Use flexbox to layout children */
+  align-items: center; /* Align items vertically */
+  width: 100%; /* Take full width to accommodate children */
+}
+
+form {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+textarea {
+  border: 1px solid #c5c5d2;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  width: calc(100% - 20px);
+  resize: vertical;
+  overflow: auto;
+  margin: 0;
+  margin-right: 10px;
+  flex-grow: 1;
+  padding: 8px 12px;
+  max-height: 32px;
+  box-sizing: border-box; /* Include padding in the element's total dimensions */
+}
+
+input[type="submit"],
+input[type="button"] {
+  padding: 12px 16px;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  flex: 1;
+  margin: 0 2px;
+}
+
+input[type="submit"] {
+  flex-grow: 4;
+}
+
+input[type="button"] {
+  flex-grow: 1;
+  background-color: #f44336;
+}
+
+input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #10a37f;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+
+.result {
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.typing-indicator-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.typing-indicator {
+  margin-left: 4px;
+  font-size: 16px; /* Adjust size as needed */
+}
+
+.typing-indicator::after {
+  content: "•";
+  animation: typing 1.5s infinite step-start;
+}
+
+@keyframes typing {
+  0%,
+  100% {
+    content: "•";
+  }
+  33% {
+    content: "••";
+  }
+  66% {
+    content: "•••";
+  }
+}
+
+.button-group {
+  display: flex;
+  align-items: center; /* Add this to vertically center the elements */
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.file-upload-btn {
+  background: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.file-upload-btn:hover {
+  background: #0056b3;
+}
+
+.file-upload-input {
+  display: none; /* Hide the actual input */
+}
+
+#upload-banner {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+}
+
+#ids-container {
+  font-size: 9px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.file-icon {
+  cursor: pointer;
+  color: #000;
+  display: inline-block;
+  font-size: 24px;
+  padding-left: 5px;
+}
+
+.header {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items vertically */
+  justify-content: flex-start; /* Align items to the start of the container */
+  background-color: white;
+  width: 100%; /* Ensure the header spans the full width */
+  padding: 10px 0; /* Add some vertical padding */
+}
+
+.header img {
+  height: 20px;
+  margin-right: 10px;
+}
+
+.header .demo-text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.message-role {
+  align-self: flex-start;
+  font-size: 12pt;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.message-role.user {
+  align-self: flex-end;
+}
+
+#send-btn {
+  width: 42px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #c5c5d2;
+  background-color: #10a37f;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
