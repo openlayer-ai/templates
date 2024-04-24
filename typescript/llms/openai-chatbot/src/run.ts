@@ -1,6 +1,6 @@
 // src/run.ts
+import { CLIHandler } from "openlayer/dist/cli";
 import { MyModel } from "./models/myModel";
-import { CLIHandler } from "openlayer/cli";
 
 // User implements their model
 const model = new MyModel();

@@ -1,7 +1,7 @@
 // src/models/myModel.ts
-import { RunReturn } from "openlayer/run";
-import { OpenAIMonitor } from "openlayer";
 import { ChatCompletion } from "openai/resources";
+import { OpenAIMonitor } from "openlayer";
+import { RunReturn } from "openlayer/dist/run";
 
 export class MyModel {
   private openaiApiKey: string;
