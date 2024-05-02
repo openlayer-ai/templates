@@ -10,28 +10,31 @@ The openlayer_run.py must contain 2 things:
 method.
 """
 
-import pickle
-from pathlib import Path
-from typing import Tuple
+import pathlib
+from typing import Dict, Tuple
 
+import joblib
 import pandas as pd
 from openlayer.model_runners.base_model import OpenlayerModel, RunReturn
 
-PACKAGE_PATH = Path(__file__).parent
+CURRENT_DIR = pathlib.Path(__file__).parent
 
 
 class MyModel(OpenlayerModel):
-    """Inherits from OpenlayerModel and implements the `run` method."""
+    """Inherits from OpenlayerModel and implements the `run_batch_from_df` method."""
 
     def __init__(self):
         """This is where the serialized objects needed should
         be loaded as class attributes."""
+        if not CURRENT_DIR.joinpath("model.pkl").exists():
+            raise FileNotFoundError(
+                "model.pkl not found. Run the `train_model.py`"
+                " script first to train and save the model."
+            )
+        self.model = joblib.load(CURRENT_DIR / "model.pkl")
 
-        with open(PACKAGE_PATH / "model.pkl", "rb") as model_file:
-            self.model = pickle.load(model_file)
-
-    def run_batch_from_df(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, dict]:
-        """Function that runs the model and returns the result."""
+    def run_batch_from_df(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict]:
+        """Function that runs the model and returns the result and config."""
         config = {
             "predictionsColumnName": "preds",
             "featureNames": [
@@ -48,8 +51,8 @@ class MyModel(OpenlayerModel):
             ],
             "categoricalFeatureNames": [],
         }
-        probs = self.model.predict(df[config["featureNames"]])
-        df["preds"] = probs.tolist()
+        preds = self.model.predict(df[config["featureNames"]])
+        df["preds"] = preds.tolist()
         return df, config
 
     def run(self, **kwargs) -> RunReturn:

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Prediction</title>
+</head>
+
+<body>
+    <h1>Diabetes prediction</h1>
+
+    <p>All model interactions are monitored by Openlayer. You can see the requests on the <a
+            href="https://app.openlayer.com/" target="_blank">Openlayer platform</a>.</p>
+
+    <h2>Feature values</h2>
+    <form action="/predict" method="post">
+        <label for="request_body">Input features as a JSON. Feel free to change the values:</label><br>
+        <textarea id="request_body" name="request_body" rows="7" cols="50">
+            {{ request_body }}
+        </textarea><br><br>
+        <button type="submit">Predict</button>
+    </form>
+    <br>
+    <h2>Prediction</h2>
+    <p>{{ prediction }}</p>
+    <br>
+</body>
+
+</html>
