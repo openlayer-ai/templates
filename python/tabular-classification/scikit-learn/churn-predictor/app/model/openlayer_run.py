@@ -10,41 +10,24 @@ The openlayer_run.py must contain 2 things:
 method.
 """
 
-import pickle
-from pathlib import Path
+import pathlib
 from typing import Tuple
 
 import pandas as pd
 from openlayer.model_runners.base_model import OpenlayerModel, RunReturn
 
-PACKAGE_PATH = Path(__file__).parent
+from classification_model import ClassificationModel
+
+CURRENT_DIR = pathlib.Path(__file__).parent
 
 
-class SklearnModel(OpenlayerModel):
-    """Inherits from OpenlayerModel and implements the `run` method."""
+class MyModel(OpenlayerModel):
+    """Inherits from OpenlayerModel and implements the `run_batch_from_df` method."""
 
     def __init__(self):
         """This is where the serialized objects needed should
         be loaded as class attributes."""
-
-        with open(PACKAGE_PATH / "model.pkl", "rb") as model_file:
-            self.model = pickle.load(model_file)
-        with open(PACKAGE_PATH / "encoders.pkl", "rb") as encoders_file:
-            self.encoders = pickle.load(encoders_file)
-
-    def _data_encode_one_hot(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Pre-processing needed for our particular use case."""
-
-        df = df.copy(True)
-        df.reset_index(drop=True, inplace=True)  # Causes NaNs otherwise
-        for feature, enc in self.encoders.items():
-            enc_df = pd.DataFrame(
-                enc.transform(df[[feature]]).toarray(),
-                columns=enc.get_feature_names_out([feature]),
-            )
-            df = df.join(enc_df)
-            df = df.drop(columns=feature)
-        return df
+        self.model = ClassificationModel()
 
     def run_batch_from_df(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, dict]:
         """Function that runs the model and returns the result."""
@@ -63,8 +46,7 @@ class SklearnModel(OpenlayerModel):
                 "EstimatedSalary",
             ],
         }
-        encoded_df = self._data_encode_one_hot(df[config["featureNames"]])
-        probs = self.model.predict_proba(encoded_df)
+        probs = self.model.predict_proba(df[config["featureNames"]])
         df["preds"] = probs.tolist()
         return df, config
 
@@ -76,5 +58,5 @@ class SklearnModel(OpenlayerModel):
 
 
 if __name__ == "__main__":
-    model = SklearnModel()
+    model = MyModel()
     model.run_from_cli()

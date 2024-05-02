@@ -42,5 +42,4 @@ def train_model(X: pd.DataFrame, y: pd.Series) -> None:
 
 if __name__ == "__main__":
     X, y = load_data()
-    print(X.loc[0].to_dict())
     train_model(X, y)
