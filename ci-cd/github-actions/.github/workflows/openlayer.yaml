@@ -17,6 +17,6 @@ jobs:
       - name: Install Your Requirements
         run: openlayer install
       - name: Generate Outputs
-        run: openlayer batch --api-key=${{ secrets.OPENLAYER_API_KEY }}
+        run: openlayer batch
       - name: Push Project Artifacts to Openlayer
         run: openlayer push --message ${{ github.event.head_commit.message }} --api-key=${{ secrets.OPENLAYER_API_KEY }}
