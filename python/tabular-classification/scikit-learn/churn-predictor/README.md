@@ -1,6 +1,6 @@
-# Tabular regression (scikit-learn) template
+# Tabular classification (scikit-learn) template
 
-This template shows how to set up Openlayer with a project built around a **tabular regression model in Python (scikit-learn)**. It
+This template shows how to set up Openlayer with a project built around a **tabular classification model in Python (scikit-learn)**. It
 features Openlayer's:
 
 - **development** mode: used to test your model automatically using CI / CD.
@@ -37,15 +37,15 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 
 ## How it works
 
-The tabular regression model is trained in the script [`app/model/train_model.py`](/python/tabular-regression/scikit-learn/diabetes-predictor/app/model/train_model.py). At the end of the training, the model is saved as the `model.pkl` file in the [`app/model`](/python/tabular-regression/scikit-learn/diabetes-predictor/app/model) directory.
+The tabular classification model is trained in the script [`app/model/train_model.py`](/python/tabular-classification/scikit-learn/churn-predictor/app/model/train_model.py). At the end of the training, the model is saved as the `model.pkl` file in the [`app/model`](/python/tabular-classification/scikit-learn/churn-predictor/app/model) directory.
 
 ### Monitoring
 
-All the production requests made to the `/predict` endpoint are streamed to Openlayer (see [`app/server.py`](/python/tabular-regression/scikit-learn/diabetes-predictor/app/server.py)). The data streaming is done with the `stream_data` method from [Openlayer's Python SDK](https://reference.openlayer.com/reference/api/openlayer.InferencePipeline.stream_data.html).
+All the production requests made to the `/predict` endpoint are streamed to Openlayer (see [`app/server.py`](/python/tabular-classification/scikit-learn/churn-predictor/app/server.py)). The data streaming is done with the `stream_data` method from [Openlayer's Python SDK](https://reference.openlayer.com/reference/api/openlayer.InferencePipeline.stream_data.html).
 
 ### Development
 
-The [`openlayer.json`](/python/tabular-regression/scikit-learn/diabetes-predictor/openlayer.json) config file and the [`openlayer_run.py`](/python/tabular-regression/scikit-learn/diabetes-predictor/app/model/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
+The [`openlayer.json`](/python/tabular-classification/scikit-learn/churn-predictor/openlayer.json) config file and the [`openlayer_run.py`](/python/tabular-classification/scikit-learn/churn-predictor/app/model/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
 
 With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
 
