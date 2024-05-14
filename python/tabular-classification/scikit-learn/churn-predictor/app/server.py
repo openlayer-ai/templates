@@ -14,9 +14,12 @@ load_dotenv(dotenv_path=".env")
 
 client = openlayer.OpenlayerClient(api_key=os.environ.get("OPENLAYER_API_KEY"))
 project = client.create_project(
-    name="churn-predictor", task_type=tasks.TaskType.TabularClassification
+    name=os.environ.get("OPENLAYER_PROJECT_NAME", "churn-predictor"),
+    task_type=tasks.TaskType.TabularClassification,
 )
-inference_pipeline = project.create_inference_pipeline(name="production")
+inference_pipeline = project.create_inference_pipeline(
+    name=os.environ.get("OPENLAYER_INFERENCE_PIPELINE_NAME", "production")
+)
 
 app = Flask(__name__)
 
