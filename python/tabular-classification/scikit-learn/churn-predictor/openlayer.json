@@ -1,51 +1,33 @@
 {
-    "taskType": "tabular-classification",
-    "model": {
-        "modelType": "full",
-        "runtime": "python_3_10",
-        "installCommand": "pip install uv; VIRTUAL_ENV=$(python -c 'import sys; print(sys.prefix)') uv pip install -r app/model/requirements.txt",
-        "batchCommand": "python app/model/openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
-        "outputDirectory": "output",
-        "architectureType": "sklearn",
-        "classNames": [
-            "Retained",
-            "Exited"
-        ],
-        "categoricalFeatureNames": [
-            "Gender",
-            "Geography"
-        ]
+  "taskType": "tabular-classification",
+  "model": {
+    "modelType": "full",
+    "runtime": "python_3_10",
+    "installCommand": "pip install uv; VIRTUAL_ENV=$(python -c 'import sys; print(sys.prefix)') uv pip install -r app/model/requirements.txt",
+    "batchCommand": "python app/model/openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
+    "outputDirectory": "output",
+    "architectureType": "sklearn",
+    "classNames": ["Retained", "Exited"],
+    "categoricalFeatureNames": ["Gender", "Geography"]
+  },
+  "datasets": [
+    {
+      "name": "validation",
+      "path": "data/validation.csv",
+      "label": "validation",
+      "classNames": ["Retained", "Exited"],
+      "categoricalFeatureNames": ["Gender", "Geography"],
+      "labelColumnName": "churn",
+      "sep": ","
     },
-    "datasets": [
-        {
-            "name": "validation",
-            "path": "data/validation.csv",
-            "label": "validation",
-            "classNames": [
-                "Retained",
-                "Exited"
-            ],
-            "categoricalFeatureNames": [
-                "Gender",
-                "Geography"
-            ],
-            "labelColumnName": "churn",
-            "sep": ","
-        },
-        {
-            "name": "training",
-            "path": "data/training.csv",
-            "label": "training",
-            "classNames": [
-                "Retained",
-                "Exited"
-            ],
-            "categoricalFeatureNames": [
-                "Gender",
-                "Geography"
-            ],
-            "labelColumnName": "churn",
-            "sep": ","
-        }
-    ]
+    {
+      "name": "training",
+      "path": "data/training.csv",
+      "label": "training",
+      "classNames": ["Retained", "Exited"],
+      "categoricalFeatureNames": ["Gender", "Geography"],
+      "labelColumnName": "churn",
+      "sep": ","
+    }
+  ]
 }

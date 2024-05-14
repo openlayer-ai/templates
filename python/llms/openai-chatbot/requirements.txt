@@ -13,7 +13,7 @@ itsdangerous==2.1.2
 Jinja2>=3.1.4
 MarkupSafe==2.1.5
 openai==1.12.0
-openlayer==0.2.0a2
+openlayer==0.2.0a9
 pydantic==2.6.1
 pydantic_core==2.16.2
 python-dotenv==1.0.1

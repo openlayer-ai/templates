@@ -43,16 +43,24 @@ def predict():
         input_json = request.form["request_body"]
         input_dict = json.loads(input_json)
         df = pd.DataFrame([input_dict])
-        prediction = np.argmax(model.predict_proba(df))
+        prediction_scores = model.predict_proba(df).tolist()
+        prediction = int(np.argmax(prediction_scores))
 
         # Stream the data to Openlayer
         class_names = ["Retained", "Exited"]
-        rows = {**input_dict, "prediction": prediction}
+        rows = [
+            {
+                **input_dict,
+                "prediction": prediction,
+                "prediction_scores": prediction_scores,
+            }
+        ]
         config = data_stream_params.ConfigTabularClassificationData(
             class_names=class_names,
             feature_names=list(input_dict.keys()),
             categorical_feature_names=["Geography", "Gender"],
             predictions_column_name="prediction",
+            prediction_scores_column_name="prediction_scores",
         )
 
         client = Openlayer()

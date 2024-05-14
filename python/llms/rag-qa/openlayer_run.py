@@ -24,10 +24,7 @@ class OpenAIModelInterface(OpenlayerModel):
         """Make sure you import / instantiate your system here."""
         self.model = rag_pipeline.RagPipeline()
 
-    def run(
-        self,
-        input_data: str,
-    ) -> RunReturn:
+    def run(self, input_data: str) -> RunReturn:
         """Method that runs the model on a single row of the dataset
         and returns the result (a `RunReturn` object)."""
         answer = self.model.query(input_data)

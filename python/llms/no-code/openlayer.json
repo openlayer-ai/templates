@@ -1,0 +1,31 @@
+{
+  "taskType": "llm-base",
+  "model": {
+    "modelType": "api",
+    "modelProvider": "OpenAI",
+    "model": "gpt-3.5-turbo",
+    "modelParameters": {
+      "temperature": 0.7
+    },
+    "prompt": [
+      {
+        "role": "system",
+        "content": "You answer questions."
+      },
+      {
+        "role": "user",
+        "content": "{{ input }}"
+      }
+    ]
+  },
+  "datasets": [
+    {
+      "name": "validation",
+      "path": "dataset.json",
+      "label": "validation",
+      "inputVariableNames": ["input"],
+      "groundTruthColumnName": "ground_truth"
+    }
+  ],
+  "testsPath": "tests.json"
+}

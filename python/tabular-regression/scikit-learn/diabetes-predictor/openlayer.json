@@ -1,26 +1,26 @@
 {
-    "taskType": "tabular-regression",
-    "model": {
-        "modelType": "full",
-        "runtime": "python_3_10",
-        "installCommand": "pip install -r app/model/requirements.txt",
-        "batchCommand": "python app/model/openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
-        "outputDirectory": "output",
-        "architectureType": "sklearn",
-        "categoricalFeatureNames": []
+  "taskType": "tabular-regression",
+  "model": {
+    "modelType": "full",
+    "runtime": "python_3_10",
+    "installCommand": "pip install -r app/model/requirements.txt",
+    "batchCommand": "python app/model/openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
+    "outputDirectory": "output",
+    "architectureType": "sklearn",
+    "categoricalFeatureNames": []
+  },
+  "datasets": [
+    {
+      "name": "validation",
+      "path": "data/validation.csv",
+      "label": "validation",
+      "targetColumnName": "target"
     },
-    "datasets": [
-        {
-            "name": "validation",
-            "path": "data/validation.csv",
-            "label": "validation",
-            "targetColumnName": "target"
-        },
-        {
-            "name": "training",
-            "path": "data/training.csv",
-            "label": "training",
-            "targetColumnName": "target"
-        }
-    ]
+    {
+      "name": "training",
+      "path": "data/training.csv",
+      "label": "training",
+      "targetColumnName": "target"
+    }
+  ]
 }
