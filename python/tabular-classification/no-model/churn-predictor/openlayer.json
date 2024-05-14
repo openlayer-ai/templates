@@ -1,0 +1,47 @@
+{
+  "taskType": "tabular-classification",
+  "datasets": [
+    {
+      "name": "validation",
+      "path": "data/validation.csv",
+      "label": "validation",
+      "classNames": ["Retained", "Exited"],
+      "categoricalFeatureNames": ["Gender", "Geography"],
+      "labelColumnName": "churn",
+      "sep": ",",
+      "featureNames": [
+        "CreditScore",
+        "Geography",
+        "Gender",
+        "Age",
+        "Tenure",
+        "Balance",
+        "NumOfProducts",
+        "HasCrCard",
+        "IsActiveMember",
+        "EstimatedSalary"
+      ]
+    },
+    {
+      "name": "training",
+      "path": "data/training.csv",
+      "label": "training",
+      "classNames": ["Retained", "Exited"],
+      "categoricalFeatureNames": ["Gender", "Geography"],
+      "labelColumnName": "churn",
+      "sep": ",",
+      "featureNames": [
+        "CreditScore",
+        "Geography",
+        "Gender",
+        "Age",
+        "Tenure",
+        "Balance",
+        "NumOfProducts",
+        "HasCrCard",
+        "IsActiveMember",
+        "EstimatedSalary"
+      ]
+    }
+  ]
+}
