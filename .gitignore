@@ -163,4 +163,6 @@ cython_debug/
 
 # Openlayer generated outputs
 output/
+
+# Openlayer
 .openlayer
