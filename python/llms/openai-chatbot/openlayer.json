@@ -15,6 +15,7 @@
       "groundTruthColumnName": "ground_truth"
     }
   ],
+  "testsPath": "tests.json",
   "metrics": {
     "settings": [
       {
@@ -51,7 +52,44 @@
         "key": "maxLatency",
         "starred": false,
         "selected": true
+      },
+      {
+        "key": "RishabMetric",
+        "starred": true,
+        "selected": true,
+        "name": "Rishab Metric",
+        "description": "This is a custom metric",
+        "lowerBound": 0,
+        "upperBound": 1
+      },
+      {
+        "key": "AnswerSimilarity",
+        "starred": true,
+        "selected": true,
+        "description": "Ragas (0.1.9) mean answer similarity",
+        "lowerBound": 0,
+        "upperBound": 1
+      },
+      {
+        "key": "AnswerCorrectness",
+        "starred": true,
+        "selected": true,
+        "description": "Ragas (0.1.9) mean answer correctness",
+        "lowerBound": 0,
+        "upperBound": 1
+      },
+      {
+        "key": "Faithfulness",
+        "starred": true,
+        "selected": true,
+        "description": "Ragas (0.1.9) mean faithfulness",
+        "lowerBound": 0,
+        "upperBound": 1
       }
-    ]
+    ],
+    "custom": {
+      "installCommand": "uv pip install -r metrics/requirements.txt",
+      "batchComputeCommand": "python metrics/run_all.py"
+    }
   }
 }
