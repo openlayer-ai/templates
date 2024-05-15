@@ -1,0 +1,85 @@
+{
+    "taskType": "tabular-classification",
+    "model": {
+        "modelType": "shell",
+        "architectureType": "sklearn",
+        "classNames": [
+            "Retained",
+            "Exited"
+        ],
+        "categoricalFeatureNames": [
+            "Gender",
+            "Geography"
+        ],
+        "featureNames": [
+            "CreditScore",
+            "Geography",
+            "Gender",
+            "Age",
+            "Tenure",
+            "Balance",
+            "NumOfProducts",
+            "HasCrCard",
+            "IsActiveMember",
+            "EstimatedSalary"
+        ]
+    },
+    "datasets": [
+        {
+            "name": "validation",
+            "path": "data/validation.csv",
+            "label": "validation",
+            "classNames": [
+                "Retained",
+                "Exited"
+            ],
+            "categoricalFeatureNames": [
+                "Gender",
+                "Geography"
+            ],
+            "labelColumnName": "churn",
+            "sep": ",",
+            "predictionScoresColumnName": "preds",
+            "featureNames": [
+                "CreditScore",
+                "Geography",
+                "Gender",
+                "Age",
+                "Tenure",
+                "Balance",
+                "NumOfProducts",
+                "HasCrCard",
+                "IsActiveMember",
+                "EstimatedSalary"
+            ]
+        },
+        {
+            "name": "training",
+            "path": "data/training.csv",
+            "label": "training",
+            "classNames": [
+                "Retained",
+                "Exited"
+            ],
+            "categoricalFeatureNames": [
+                "Gender",
+                "Geography"
+            ],
+            "labelColumnName": "churn",
+            "sep": ",",
+            "predictionScoresColumnName": "preds",
+            "featureNames": [
+                "CreditScore",
+                "Geography",
+                "Gender",
+                "Age",
+                "Tenure",
+                "Balance",
+                "NumOfProducts",
+                "HasCrCard",
+                "IsActiveMember",
+                "EstimatedSalary"
+            ]
+        }
+    ]
+}

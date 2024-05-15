@@ -1,0 +1,6 @@
+flask==3.0.2
+numpy==1.26.4
+openlayer==0.1.0a36
+pandas==2.2.1
+python-dotenv==1.0.1
+scikit-learn==1.4.1.post1
