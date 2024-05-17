@@ -1,0 +1,58 @@
+[
+    {
+        "mode": "development",
+        "syncId": "test1",
+        "name": "High semantic similarity",
+        "subpopulationFilters": null,
+        "subtype": "metricThreshold",
+        "type": "performance",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "meanSemanticSimilarity",
+                "operator": ">=",
+                "value": 0.8
+            }
+        ],
+        "usesValidationDataset": true
+    },
+    {
+        "mode": "development",
+        "syncId": "test2",
+        "name": "No dupes",
+        "subpopulationFilters": null,
+        "subtype": "duplicateRowCount",
+        "type": "integrity",
+        "thresholds": [
+            {
+                "insightName": "duplicateRowCount",
+                "measurement": "duplicateRowPercentage",
+                "operator": "<=",
+                "value": 0.0
+            }
+        ],
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false
+    },
+    {
+        "mode": "monitoring",
+        "syncId": "test4",
+        "name": "No nulls",
+        "subpopulationFilters": null,
+        "subtype": "nullRowCount",
+        "type": "integrity",
+        "thresholds": [
+            {
+                "insightName": "nullRowCount",
+                "measurement": "nullRowPercentage",
+                "operator": "<=",
+                "value": 0.0
+            }
+        ],
+        "evaluationWindow": 3600,
+        "delayWindow": 0,
+        "usesProductionData": true,
+        "usesTrainingDataset": false,
+        "usesValidationDataset": false
+    }
+]
