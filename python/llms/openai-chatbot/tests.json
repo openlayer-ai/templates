@@ -2,7 +2,7 @@
   {
     "mode": "development",
     "syncId": "b4dee7dc-4f15-48ca-a282-63e2c04e0689",
-    "name": "High semantic similarity",
+    "name": "IaC: High semantic similarity",
     "subpopulationFilters": null,
     "subtype": "metricThreshold",
     "type": "performance",
@@ -19,7 +19,7 @@
   {
     "mode": "development",
     "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e",
-    "name": "No dupes",
+    "name": "IaC: No duplicates",
     "subpopulationFilters": null,
     "subtype": "duplicateRowCount",
     "type": "integrity",
@@ -37,7 +37,7 @@
   {
     "mode": "monitoring",
     "syncId": "ca941701-2400-4900-80d6-856b682e410e",
-    "name": "No nulls",
+    "name": "IaC: No nulls",
     "subpopulationFilters": null,
     "subtype": "nullRowCount",
     "type": "integrity",
