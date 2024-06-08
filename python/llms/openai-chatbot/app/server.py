@@ -1,7 +1,7 @@
 """Sample Flask app using OpenAI's GPT.
 
 The model is imported from the `model.openai_model` module, which is where we wrapped
-the OpenAI client with Openlayer's Python SDK `OpenAIMonitor` for tracing.
+the OpenAI client with Openlayer's Python SDK `trace_openai` for tracing.
 
 This sample app is based on OpenAI's original Python example: https://github.com/openai/openai-quickstart-python.
 """

@@ -12,9 +12,8 @@ The model is imported from the `.app.model.langchain_model` module, which is
 where we used Openlayer's callback handler, for tracing.
 """
 
-from openlayer.model_runners.base_model import OpenlayerModel, RunReturn
-
 from app.model import langchain_model
+from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
 
 
 class LangChainModelInterface(OpenlayerModel):

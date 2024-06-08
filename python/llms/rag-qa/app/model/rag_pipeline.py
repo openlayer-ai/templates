@@ -1,15 +1,12 @@
-"""Module for my RAG pimenine."""
+"""Module for my RAG pipeline."""
+
+import os
 
 import numpy as np
 import openai
-
+from openlayer.lib import trace, trace_openai
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
-from openlayer import llm_monitors
-from openlayer.tracing import tracer
-
-import os
 
 CONTEXT_PATH = os.path.join(os.path.dirname(__file__), "contexts.txt")
 
@@ -20,17 +17,16 @@ class RagPipeline:
     The main method is `query`, which answers to a user query with the LLM."""
 
     def __init__(self):
-        # Wrap OpenAI client with Openlayer's OpenAIMonitor to trace it
-        self.openai_client = openai.OpenAI()
-        llm_monitors.OpenAIMonitor(client=self.openai_client)
+        # Wrap OpenAI client with Openlayer's `trace_openai` to trace it
+        self.openai_client = trace_openai(openai.OpenAI())
 
         self.vectorizer = TfidfVectorizer()
         with open(CONTEXT_PATH, "r", encoding="utf-8") as file:
             self.context_sections = file.read().split("\n\n")
         self.tfidf_matrix = self.vectorizer.fit_transform(self.context_sections)
 
-    # Decorate the functions you'd like to trace with @tracer.trace()
-    @tracer.trace()
+    # Decorate the functions you'd like to trace with @trace()
+    @trace()
     def query(self, user_query: str) -> str:
         """Main method.
 
@@ -41,7 +37,7 @@ class RagPipeline:
         answer = self.generate_answer_with_gpt(prompt)
         return answer
 
-    @tracer.trace()
+    @trace()
     def retrieve_context(self, query: str) -> str:
         """Context retriever.
 
@@ -54,7 +50,7 @@ class RagPipeline:
         most_relevant_idx = np.argmax(cosine_similarities)
         return self.context_sections[most_relevant_idx]
 
-    @tracer.trace()
+    @trace()
     def inject_prompt(self, query: str, context: str):
         """Combines the query with the context and returns
         the prompt (formatted to conform with OpenAI models)."""
@@ -66,7 +62,7 @@ class RagPipeline:
             },
         ]
 
-    @tracer.trace()
+    @trace()
     def generate_answer_with_gpt(self, prompt):
         """Forwards the prompt to GPT and returns the answer."""
         response = self.openai_client.chat.completions.create(

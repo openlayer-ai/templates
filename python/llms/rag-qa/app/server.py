@@ -1,19 +1,14 @@
 """Sample Flask app using the RAG pipeline.
 
 The model is imported from the `model.rag_pipeline` module, which is where we wrapped
-the OpenAI client with Openlayer's Python SDK `OpenAIMonitor` and decorated the methods
-we wanted to trace with `@tracer.trace()`.
+the OpenAI client with Openlayer's Python SDK `trace_openai` and decorated the methods
+we wanted to trace with `@trace()`.
 
 This sample app is based on OpenAI's original Python example: https://github.com/openai/openai-quickstart-python.
 """
 
 from dotenv import load_dotenv
-from flask import (
-    Flask,
-    jsonify,
-    render_template,
-    request,
-)
+from flask import Flask, jsonify, render_template, request
 from model.rag_pipeline import RagPipeline
 
 load_dotenv(dotenv_path=".env")

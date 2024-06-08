@@ -2,21 +2,14 @@ import json
 import os
 
 import numpy as np
-
-import openlayer
 import pandas as pd
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request
-from openlayer import tasks
 from model.classification_model import ClassificationModel
+from openlayer import Openlayer
+from openlayer.types.inference_pipelines import data_stream_params
 
 load_dotenv(dotenv_path=".env")
-
-client = openlayer.OpenlayerClient(api_key=os.environ.get("OPENLAYER_API_KEY"))
-project = client.create_project(
-    name="churn-predictor", task_type=tasks.TaskType.TabularClassification
-)
-inference_pipeline = project.create_inference_pipeline(name="production")
 
 app = Flask(__name__)
 
@@ -54,14 +47,20 @@ def predict():
 
         # Stream the data to Openlayer
         class_names = ["Retained", "Exited"]
-        data = {**input_dict, "prediction": prediction}
-        config = {
-            "classNames": class_names,
-            "featureNames": list(input_dict.keys()),
-            "categoricalFeatureNames": ["Geography", "Gender"],
-            "predictionsColumnName": "prediction",
-        }
-        inference_pipeline.stream_data(stream_data=data, stream_config=config)
+        rows = {**input_dict, "prediction": prediction}
+        config = data_stream_params.ConfigTabularClassificationData(
+            class_names=class_names,
+            feature_names=list(input_dict.keys()),
+            categorical_feature_names=["Geography", "Gender"],
+            predictions_column_name="prediction",
+        )
+
+        client = Openlayer()
+        client.inference_pipelines.data.stream(
+            id=os.environ.get("OPENLAYER_INFERENCE_PIPELINE_ID"),
+            rows=rows,
+            config=config,
+        )
 
         # Return the prediction
         return render_template(

@@ -1,19 +1,13 @@
-"""Sample Flask app using the RAG pipeline.
+"""Sample Flask app using an LLM with LangChain.
 
-The model is imported from the `model.rag_pipeline` module, which is where we wrapped
-the OpenAI client with Openlayer's Python SDK `OpenAIMonitor` and decorated the methods
-we wanted to trace with `@tracer.trace()`.
+The model is imported from the `model.langchain_model` module, which is where we used
+the Openlayer callback handler.
 
 This sample app is based on OpenAI's original Python example: https://github.com/openai/openai-quickstart-python.
 """
 
 from dotenv import load_dotenv
-from flask import (
-    Flask,
-    jsonify,
-    render_template,
-    request,
-)
+from flask import Flask, jsonify, render_template, request
 from model.langchain_model import LangChainModel
 
 load_dotenv(dotenv_path=".env")

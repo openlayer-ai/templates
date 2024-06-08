@@ -3,19 +3,14 @@ import os
 import pathlib
 
 import joblib
-import openlayer
 import pandas as pd
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request
-from openlayer import tasks
+from openlayer import Openlayer
+from openlayer.types.inference_pipelines import data_stream_params
 
 load_dotenv(dotenv_path=".env")
 
-client = openlayer.OpenlayerClient(api_key=os.environ.get("OPENLAYER_API_KEY"))
-project = client.create_project(
-    name="diabetes-predictor", task_type=tasks.TaskType.TabularRegression
-)
-inference_pipeline = project.create_inference_pipeline(name="production")
 
 app = Flask(__name__)
 
@@ -53,12 +48,16 @@ def predict():
         prediction = model.predict(df)
 
         # Stream the data to Openlayer
-        data = {**input_dict, "prediction": prediction[0]}
-        config = {
-            "featureNames": list(input_dict.keys()),
-            "predictionsColumnName": "prediction",
-        }
-        inference_pipeline.stream_data(stream_data=data, stream_config=config)
+        rows = {**input_dict, "prediction": prediction[0]}
+        config = data_stream_params.ConfigTabularRegressionData(
+            feature_names=list(input_dict.keys()), predictions_column_name="prediction"
+        )
+        client = Openlayer()
+        client.inference_pipelines.data.stream(
+            id=os.environ.get("OPENLAYER_INFERENCE_PIPELINE_ID"),
+            rows=rows,
+            config=config,
+        )
 
         # Return the prediction
         return render_template(

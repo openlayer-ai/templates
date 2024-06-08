@@ -1,10 +1,8 @@
 """Module for my LangChain model."""
 
-from typing import Dict, List
-
 from langchain_core.messages import HumanMessage
 from langchain_openai import ChatOpenAI
-from openlayer.integrations import langchain_callback
+from openlayer.lib.integrations import langchain_callback
 
 
 class LangChainModel:
