@@ -41,7 +41,7 @@ The tabular regression model is trained in the script [`app/model/train_model.py
 
 ### Monitoring
 
-All the production requests made to the `/predict` endpoint are streamed to Openlayer (see [`app/server.py`](/python/tabular-regression/scikit-learn/diabetes-predictor/app/server.py)). The data streaming is done with the `stream_data` method from [Openlayer's Python SDK](https://reference.openlayer.com/reference/api/openlayer.InferencePipeline.stream_data.html).
+All the production requests made to the `/predict` endpoint are streamed to Openlayer (see [`app/server.py`](/python/tabular-regression/scikit-learn/diabetes-predictor/app/server.py)). The data streaming is done with the `stream` method from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/rest/monitoring/stream-data).
 
 ### Development
 

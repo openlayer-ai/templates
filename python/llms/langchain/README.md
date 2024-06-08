@@ -37,12 +37,12 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 
 ## How it works
 
-Passing in Openlayer's callback handler from [Openlayer's Python SDK](https://reference.openlayer.com/reference/index.html) enables tracing for
+Passing in Openlayer's callback handler from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/sdk/libraries/python) enables tracing for
 every chat completion call. This is done in [`app/model/langchain_model.py`](/python/llms/langchain/app/model/langchain_model.py), where our LLM is defined.
 
 ### Monitoring
 
-All production requests that go through the code that uses the `OpenlayerHandler` are automatically streamed to the Openlayer platform, where our tests and alerts are defined. You just need to add your Openlayer API key and project name as environment variables.
+All production requests that go through the code that uses the `OpenlayerHandler` are automatically streamed to the Openlayer platform, where our tests and alerts are defined. You just need to add your Openlayer API key and inference pipeline id as environment variables.
 
 ### Development
 

@@ -3,14 +3,14 @@
 from typing import Dict, List
 
 import openai
-from openlayer import llm_monitors
+from openlayer.lib import trace_openai
 
 
 class OpenAIModel:
     """Class for an OpenAI model.
 
-    The class instantiates the OpenAI client, wraps it in a monitor to enable tracing,
-    and defines a `create_chat_completion` method.
+    The class instantiates the OpenAI client, wraps it with the `trace_openai` function
+    to enable tracing, and defines a `create_chat_completion` method.
 
     The `create_chat_completion` method is what's used throughout the app, to keep
     a single source of truth for the OpenAI client and its methods.
@@ -18,10 +18,7 @@ class OpenAIModel:
 
     def __init__(self):
         """Make sure you import / instantiate your system here."""
-        self.openai_client = openai.Client()
-
-        # Wrap the OpenAI client in a monitor to enable tracing
-        llm_monitors.OpenAIMonitor(client=self.openai_client)
+        self.openai_client = trace_openai(openai.Client())
 
     def create_chat_completion(
         self, messages: List[Dict[str, str]], stream: bool = False

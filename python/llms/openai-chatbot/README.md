@@ -37,12 +37,12 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 
 ## How it works
 
-Wrapping the OpenAI client with `OpenAIMonitor` from [Openlayer's Python SDK](https://reference.openlayer.com/reference/index.html) enables tracing for
+Wrapping the OpenAI client with `trace_openai` function from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/sdk/libraries/python) enables tracing for
 every chat completion call. This is done in [`app/model/openai_model.py`](/python/llms/openai-chatbot/app/model/openai_model.py), where our LLM is defined.
 
 ### Monitoring
 
-All production requests that go through the code wrapped with the `OpenAIMonitor` are automatically streamed to the Openlayer platform, where our tests and alerts are defined. You just need to add your Openlayer API key and project name as environment variables.
+All production requests that go through the client wrapped with the `trace_openai` are automatically streamed to the Openlayer platform, where our tests and alerts are defined. You just need to add your Openlayer API key and inference pipeline id as environment variables.
 
 ### Development
 
@@ -50,4 +50,4 @@ The [`openlayer.json`](/python/llms/openai-chatbot/openlayer.json) config file a
 
 With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
 
-Note that wrapping the OpenAI client with `OpenAIMonitor` enables tracing, tokens, and cost tracking in development mode as well.
+Note that wrapping the OpenAI client with the `trace_openai` function enables tracing, tokens, and cost tracking in development mode as well.

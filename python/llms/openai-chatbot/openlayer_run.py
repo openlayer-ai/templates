@@ -9,13 +9,12 @@ The openlayer_run.py must contain 2 things:
 method.
 
 The model is imported from the `.app.model.openai_model` module, which is
-where we wrapped the OpenAI client with Openlayer's Python SDK `OpenAIMonitor`
+where we wrapped the OpenAI client with Openlayer's Python SDK `trace_openai`
 for tracing.
 """
 
-from openlayer.model_runners.base_model import OpenlayerModel, RunReturn
-
 from app.model import openai_model
+from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
 
 
 class OpenAIModelInterface(OpenlayerModel):

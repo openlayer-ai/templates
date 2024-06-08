@@ -14,9 +14,8 @@ import pathlib
 from typing import Tuple
 
 import pandas as pd
-from openlayer.model_runners.base_model import OpenlayerModel, RunReturn
-
 from classification_model import ClassificationModel
+from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
 
 CURRENT_DIR = pathlib.Path(__file__).parent
 
