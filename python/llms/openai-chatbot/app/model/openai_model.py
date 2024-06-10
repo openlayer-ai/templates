@@ -18,6 +18,7 @@ class OpenAIModel:
 
     def __init__(self):
         """Make sure you import / instantiate your system here."""
+        # Wrap the OpenAI client to enable tracing
         self.openai_client = trace_openai(openai.Client())
 
     def create_chat_completion(

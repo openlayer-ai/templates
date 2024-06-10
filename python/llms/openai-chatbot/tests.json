@@ -54,5 +54,22 @@
     "usesProductionData": true,
     "usesTrainingDataset": false,
     "usesValidationDataset": false
+  },
+  {
+    "mode": "development",
+    "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e",
+    "name": "Custom: High score on my metric",
+    "subpopulationFilters": null,
+    "type": "custom",
+    "thresholds": [
+      {
+        "insightName": "myMetric",
+        "measurement": "value",
+        "operator": "<=",
+        "value": 0.0
+      }
+    ],
+    "usesTrainingDataset": false,
+    "usesValidationDataset": false
   }
 ]

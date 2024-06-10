@@ -1,19 +1,34 @@
 {
-    "taskType": "llm-base",
-    "model": {
-        "modelType": "full",
-        "runtime": "python_3_10",
-        "installCommand": "pip install uv; VIRTUAL_ENV=$(python -c 'import sys; print(sys.prefix)') uv pip install -r app/model/requirements.txt",
-        "batchCommand": "python openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
-        "outputDirectory": "output"
+  "taskType": "llm-base",
+  "model": {
+    "modelType": "full",
+    "runtime": "python_3_10",
+    "installCommand": "pip install uv; VIRTUAL_ENV=$(python -c 'import sys; print(sys.prefix)') uv pip install -r app/model/requirements.txt; uv pip install -e /Users/rishabramanathan/projects/openlayer-repos/openlayer-python",
+    "batchCommand": "python openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/{{ name }}",
+    "outputDirectory": "output"
+  },
+  "datasets": [
+    {
+      "name": "golden_set",
+      "path": "dataset.json",
+      "label": "validation",
+      "groundTruthColumnName": "ground_truth"
+    }
+  ],
+  "testsPath": "tests.json",
+  "metrics": [
+    {
+      "name": "meanSemanticSimilarity",
+      "starred": false,
+      "selected": true
     },
-    "datasets": [
-        {
-            "name": "golden_set",
-            "path": "dataset.json",
-            "label": "validation",
-            "groundTruthColumnName": "ground_truth"
-        }
-    ],
-    "testsPath": "tests.json"
+    {
+      "name": "myMetric",
+      "starred": true,
+      "selected": true,
+      "command": "python openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/metrics/{{ name }}",
+      "description": "This does cool stuff!",
+      "range": "0-1"
+    }
+  ]
 }

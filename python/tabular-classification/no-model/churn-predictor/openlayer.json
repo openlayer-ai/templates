@@ -1,23 +1,5 @@
 {
   "taskType": "tabular-classification",
-  "model": {
-    "modelType": "shell",
-    "architectureType": "sklearn",
-    "classNames": ["Retained", "Exited"],
-    "categoricalFeatureNames": ["Gender", "Geography"],
-    "featureNames": [
-      "CreditScore",
-      "Geography",
-      "Gender",
-      "Age",
-      "Tenure",
-      "Balance",
-      "NumOfProducts",
-      "HasCrCard",
-      "IsActiveMember",
-      "EstimatedSalary"
-    ]
-  },
   "datasets": [
     {
       "name": "validation",
@@ -27,7 +9,6 @@
       "categoricalFeatureNames": ["Gender", "Geography"],
       "labelColumnName": "churn",
       "sep": ",",
-      "predictionScoresColumnName": "preds",
       "featureNames": [
         "CreditScore",
         "Geography",
@@ -49,7 +30,6 @@
       "categoricalFeatureNames": ["Gender", "Geography"],
       "labelColumnName": "churn",
       "sep": ",",
-      "predictionScoresColumnName": "preds",
       "featureNames": [
         "CreditScore",
         "Geography",
