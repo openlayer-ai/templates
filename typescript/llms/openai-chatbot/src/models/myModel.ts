@@ -1,7 +1,8 @@
 // src/models/myModel.ts
 import { ChatCompletion } from "openai/resources";
-import { OpenAIMonitor } from "openlayer";
-import { RunReturn } from "openlayer/dist/run";
+import Openlayer from "openlayer";
+import { RunReturn } from "openlayer/lib/core/cli";
+import OpenAIMonitor from "openlayer/lib/core/openai-monitor";
 
 export class MyModel {
   private openaiApiKey: string;
@@ -11,11 +12,13 @@ export class MyModel {
   constructor() {
     this.openaiApiKey = process.env["OPENAI_API_KEY"] || "";
     this.openlayerApiKey = process.env["OPENLAYER_API_KEY"] || "";
+
+    const openlayerClient = new Openlayer({ apiKey: this.openlayerApiKey });
+
     this.monitor = new OpenAIMonitor({
       openAiApiKey: this.openaiApiKey,
-      openlayerApiKey: this.openlayerApiKey,
-      // specify an existing inference pipeline ID
-      openlayerInferencePipelineId: "YOUR_OPENLAYER_INFERENCE_PIPELINE_ID",
+      openlayerClient,
+      openlayerInferencePipelineId: '',
     });
   }
 
