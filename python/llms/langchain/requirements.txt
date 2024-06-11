@@ -15,7 +15,7 @@ langchain==0.1.9
 langchain-openai==0.0.8
 MarkupSafe==2.1.5
 openai==1.12.0
-openlayer==0.2.0a1
+openlayer==0.2.0a2
 pydantic==2.6.1
 pydantic_core==2.16.2
 python-dotenv==1.0.1

@@ -1,2 +1,2 @@
 openai==1.12.0
-openlayer==0.2.0a1
+openlayer==0.2.0a2
