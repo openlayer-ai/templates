@@ -16,19 +16,56 @@
     }
   ],
   "testsPath": "tests.json",
-  "metrics": [
-    {
-      "name": "meanSemanticSimilarity",
-      "starred": false,
-      "selected": true
-    },
-    {
-      "name": "myMetric",
-      "starred": true,
-      "selected": true,
-      "command": "python openlayer_run.py --dataset-path {{ path }} --output-dir {{ outputDirectory }}/metrics/{{ name }}",
-      "description": "This does cool stuff!",
-      "range": "0-1"
+  "metrics": {
+    "settings": [
+      {
+        "key": "meanSemanticSimilarity",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "totalCost",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "answerRelevancy",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "maxCost",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "meanCost",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "meanLatency",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "maxLatency",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "RishabMetric",
+        "starred": true,
+        "selected": true,
+        "name": "Rishab Metric",
+        "description": "This is a custom metric",
+        "lowerBound": 0,
+        "upperBound": 1
+      }
+    ],
+    "custom": {
+      "installCommand": "pip install -r metrics/requirements.txt",
+      "batchComputeCommand": "python metrics/run_all.py"
     }
-  ]
+  }
 }
