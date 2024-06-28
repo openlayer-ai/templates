@@ -1,0 +1,9 @@
+__pycache__
+.ipynb_checkpoints
+.DS_Store
+.eggs
+build
+dist
+.env
+random
+.venv

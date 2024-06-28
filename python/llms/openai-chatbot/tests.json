@@ -1,0 +1,81 @@
+[
+  {
+    "mode": "development",
+    "syncId": "b4dee7dc-4f15-48ca-a282-63e2c04e0689",
+    "name": "High semantic similarity",
+    "subpopulationFilters": null,
+    "subtype": "metricThreshold",
+    "type": "performance",
+    "thresholds": [
+      {
+        "insightName": "metrics",
+        "measurement": "meanSemanticSimilarity",
+        "operator": ">=",
+        "value": 0.8
+      }
+    ],
+    "usesValidationDataset": true
+  },
+  {
+    "mode": "development",
+    "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e",
+    "name": "No dupes",
+    "subpopulationFilters": null,
+    "subtype": "duplicateRowCount",
+    "type": "integrity",
+    "thresholds": [
+      {
+        "insightName": "duplicateRowCount",
+        "measurement": "duplicateRowPercentage",
+        "operator": "<=",
+        "value": 0.0
+      }
+    ],
+    "usesValidationDataset": true,
+    "usesTrainingDataset": false
+  },
+  {
+    "mode": "monitoring",
+    "syncId": "ca941701-2400-4900-80d6-856b682e410e",
+    "name": "No nulls",
+    "subpopulationFilters": null,
+    "subtype": "nullRowCount",
+    "type": "integrity",
+    "thresholds": [
+      {
+        "insightName": "nullRowCount",
+        "measurement": "nullRowPercentage",
+        "operator": "<=",
+        "value": 0.0
+      }
+    ],
+    "evaluationWindow": 3600,
+    "delayWindow": 0,
+    "usesProductionData": true,
+    "usesTrainingDataset": false,
+    "usesValidationDataset": false
+  },
+  {
+    "mode": "development",
+    "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805f",
+    "name": "Perfect score on RishabMetric",
+    "subpopulationFilters": null,
+    "type": "performance",
+    "subtype": "customMetricThreshold",
+    "thresholds": [
+      {
+        "insightParameters": [
+          {
+            "name": "key",
+            "value": "RishabMetric"
+          }
+        ],
+        "insightName": "customMetric",
+        "measurement": "value",
+        "operator": ">=",
+        "value": 1.0
+      }
+    ],
+    "usesValidationDataset": true
+  }
+]
