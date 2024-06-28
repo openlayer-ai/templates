@@ -61,10 +61,18 @@
         "description": "This is a custom metric",
         "lowerBound": 0,
         "upperBound": 1
+      },
+      {
+        "key": "Correctness",
+        "starred": true,
+        "selected": true,
+        "description": "Ragas (0.1.9) mean correctness",
+        "lowerBound": 0,
+        "upperBound": 1
       }
     ],
     "custom": {
-      "installCommand": "pip install -r metrics/requirements.txt",
+      "installCommand": "uv pip install -r metrics/requirements.txt",
       "batchComputeCommand": "python metrics/run_all.py"
     }
   }
