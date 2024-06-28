@@ -63,10 +63,26 @@
         "upperBound": 1
       },
       {
-        "key": "Correctness",
+        "key": "AnswerSimilarity",
         "starred": true,
         "selected": true,
-        "description": "Ragas (0.1.9) mean correctness",
+        "description": "Ragas (0.1.9) mean answer similarity",
+        "lowerBound": 0,
+        "upperBound": 1
+      },
+      {
+        "key": "AnswerCorrectness",
+        "starred": true,
+        "selected": true,
+        "description": "Ragas (0.1.9) mean answer correctness",
+        "lowerBound": 0,
+        "upperBound": 1
+      },
+      {
+        "key": "Faithfulness",
+        "starred": true,
+        "selected": true,
+        "description": "Ragas (0.1.9) mean faithfulness",
         "lowerBound": 0,
         "upperBound": 1
       }

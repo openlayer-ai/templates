@@ -1,10 +1,18 @@
 """Run all my custom metrics."""
 
 # Import all your custom metrics here
-from my_metric import RishabMetric
-from answer_correctness import Correctness
+from my_metrics import (AnswerCorrectness, AnswerSimilarity, Faithfulness,
+                        RishabMetric)
 from openlayer.lib.core import metrics
-
+from ragas_metrics import RagasMetrics
 
 if __name__ == "__main__":
-    metrics.MetricRunner().run_metrics([RishabMetric(), Correctness()])
+    ragas_metrics = RagasMetrics()
+    metrics.MetricRunner().run_metrics(
+        [
+            RishabMetric(),
+            AnswerCorrectness(ragas_metrics),
+            AnswerSimilarity(ragas_metrics),
+            Faithfulness(ragas_metrics),
+        ]
+    )
