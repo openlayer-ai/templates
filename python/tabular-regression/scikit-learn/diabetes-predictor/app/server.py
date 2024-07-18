@@ -54,7 +54,7 @@ def predict():
         )
         client = Openlayer()
         client.inference_pipelines.data.stream(
-            id=os.environ.get("OPENLAYER_INFERENCE_PIPELINE_ID"),
+            inference_pipeline_id=os.environ.get("OPENLAYER_INFERENCE_PIPELINE_ID"),
             rows=rows,
             config=config,
         )
