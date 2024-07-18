@@ -16,6 +16,6 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 
 ## How it works
 
-The [`openlayer.json`](/shell-model/tabular-classification/churn-predictor/openlayer.json) config file allows Openlayer to discover your datasets.
+The [`openlayer.json`](/python/tabular-classification/shell-model/churn-predictor/openlayer.json) config file allows Openlayer to discover your datasets.
 
 Typically, datasets only have the inputs that run through the model. The outputs are generated using [openlayer batch](https://docs.openlayer.com/development/configuring-output-generation). In this case, however, we show how you can include the outputs in your datasets in case you don't want to use Openlayer to generate outputs.
