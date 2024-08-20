@@ -58,7 +58,7 @@
   {
     "mode": "development",
     "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805f",
-    "name": "Perfect score on RishabMetric",
+    "name": "Perfect score on MyMetric",
     "subpopulationFilters": null,
     "type": "performance",
     "subtype": "customMetricThreshold",
@@ -67,7 +67,7 @@
         "insightParameters": [
           {
             "name": "key",
-            "value": "RishabMetric"
+            "value": "MyMetric"
           }
         ],
         "insightName": "customMetric",

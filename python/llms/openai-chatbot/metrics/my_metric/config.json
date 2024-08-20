@@ -1,0 +1,8 @@
+{
+  "installCommand": "uv pip install -r requirements.txt; uv pip install -e /Users/rishabramanathan/projects/openlayer-repos/openlayer-python",
+  "runCommand": "python run.py",
+  "name": "My Custom Metric",
+  "description": "This is a custom metric",
+  "lowerBound": 0,
+  "upperBound": 1
+}

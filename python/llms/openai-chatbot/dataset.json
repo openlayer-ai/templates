@@ -1,26 +1,14 @@
 [
-    {
-        "input_data": "What's the meaning of life?",
-        "context": [
-            "There is no meaning",
-            "The meaning of life is 42."
-        ],
-        "ground_truth": "The meaning of life is 42."
-    },
-    {
-        "input_data": "How are you doing today?",
-        "context": [
-            "I'm doing well, thank you.",
-            "I'm doing poorly, thank you."
-        ],
-        "ground_truth": "I'm doing well, thank you."
-    },
-    {
-        "input_data": "What's the weather like today?",
-        "context": [
-            "I don't know, I don't have access to weather information.",
-            "It's sunny and warm."
-        ],
-        "ground_truth": "I don't know, I don't have access to weather information."
-    }
+  {
+    "input_data": "What's the meaning of life?",
+    "ground_truth": "The meaning of life is 42."
+  },
+  {
+    "input_data": "How are you doing today?",
+    "ground_truth": "I'm doing well, thank you."
+  },
+  {
+    "input_data": "What's the weather like today?",
+    "ground_truth": "I don't know, I don't have access to weather information."
+  }
 ]

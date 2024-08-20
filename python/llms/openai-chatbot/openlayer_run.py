@@ -25,10 +25,7 @@ class OpenAIModelInterface(OpenlayerModel):
         """Make sure you import / instantiate your system here."""
         self.model = openai_model.OpenAIModel()
 
-    def run(
-        self,
-        input_data: str,
-    ) -> RunReturn:
+    def run(self, input_data: str) -> RunReturn:
         """Method that runs the model on a single row of the dataset
         and returns the result (a `RunReturn` object)."""
         response = self.model.create_chat_completion(
