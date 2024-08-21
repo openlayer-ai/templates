@@ -5,16 +5,17 @@ package org.example;
 
 import com.openlayer.api.client.OpenlayerClient;
 import com.openlayer.api.client.okhttp.OpenlayerOkHttpClient;
+import com.openlayer.api.core.JsonNumber;
+import com.openlayer.api.core.JsonString;
 import com.openlayer.api.models.InferencePipelineDataStreamParams;
 import com.openlayer.api.models.InferencePipelineDataStreamResponse;
 
 import java.util.List;
-import javax.json.Json;
 
 public class App {
     public static void main(String[] args) {
         // Configure the client using environment variables
-        // OpenlayerClient client = OpenlayerOkHttpClient.fromEnv();
+        OpenlayerClient client = OpenlayerOkHttpClient.fromEnv();
 
         // Or you can configure the client with additional properties
         /*
@@ -24,24 +25,18 @@ public class App {
          * .build();
          */
 
-        OpenlayerClient client = OpenlayerOkHttpClient.builder()
-                .fromEnv()
-                .apiKey("qRVcoWO49HRy7Q1qhywgzCN9IrS5sPwH")
-                .baseUrl("http://localhost:8080/v1")
-                .build();
-
         // Replace with your inference pipeline id
-        String inferencePipelineId = "51ed4ba8-c7b3-4cb7-8433-314b3721343b";
+        String inferencePipelineId = "your-inference-pipeline-id";
 
         // Let's say we want to stream the following row, which represents a model
         // prediction:
         // Define a row with the relevant fields
         InferencePipelineDataStreamParams.Row row = InferencePipelineDataStreamParams.Row.builder()
-                .putAdditionalProperty("user_query", Json.createValue("what's the meaning of life?"))
-                .putAdditionalProperty("output", Json.createValue("42"))
-                .putAdditionalProperty("tokens", Json.createValue(7))
-                .putAdditionalProperty("cost", Json.createValue(0.02))
-                .putAdditionalProperty("timestamp", Json.createValue(1620000000))
+                .putAdditionalProperty("user_query", JsonString.of("what's the meaning of life?"))
+                .putAdditionalProperty("output", JsonString.of("42"))
+                .putAdditionalProperty("tokens", JsonNumber.of(7))
+                .putAdditionalProperty("cost", JsonNumber.of(0.02))
+                .putAdditionalProperty("timestamp", JsonNumber.of(1620000000))
                 .build();
 
         // Create Inference Pipeline Data Stream Parameters

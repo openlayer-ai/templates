@@ -24,7 +24,6 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
     implementation("com.openlayer.api:openlayer-java:0.1.0-alpha.2")
-    implementation 'javax.json:javax.json-api:1.1.4'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
