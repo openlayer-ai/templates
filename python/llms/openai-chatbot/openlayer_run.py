@@ -13,9 +13,8 @@ where we wrapped the OpenAI client with Openlayer's Python SDK `trace_openai`
 for tracing.
 """
 
-from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
-
 from app.model import openai_model
+from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
 
 
 class OpenAIModelInterface(OpenlayerModel):

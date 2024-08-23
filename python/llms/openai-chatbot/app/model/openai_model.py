@@ -24,7 +24,7 @@ class OpenAIModel:
     def create_chat_completion(
         self, messages: List[Dict[str, str]], stream: bool = False
     ) -> "openai.types.chat.chat_completion.ChatCompletion":
-        """Wrapper for the OpenAI chat completion API."""
+        """Calls OpenAI chat completion API."""
         return self.openai_client.chat.completions.create(
             messages=messages,
             model="gpt-3.5-turbo",
