@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='icons.png') }}" alt="Anthropic + Openlayer Logo" />
+        <p><strong>Anthropic + Openlayer</strong></p>
+    </div>
+    <div class="container">
+        <h2>Product Review Extractor</h2>
+        <p>Paste a product review and receive some structured data extracted from it by an Anthropic LLM.</p>
+        <p>All model interactions are monitored by Openlayer. You can see the requests on the <a
+            href="https://app.openlayer.com/" target="_blank">Openlayer platform</a>.</p>
+        <form id="reviewForm">
+            <textarea name="review_text" id="reviewText" placeholder="Paste a product review here..."></textarea>
+            <button type="button" onclick="sendReview()">Analyze Review</button>
+        </form>
+
+        <div>
+            <p>Or try these prefilled reviews:</p>
+            <button type="button" onclick="prefillReview('The laptop is very fast, handling all my software with ease. However, the new charger is too large.')">Review 1</button>
+            <button type="button" onclick="prefillReview('This phone has an amazing screen, but the battery life is terrible.')">Review 2</button>
+            <button type="button" onclick="prefillReview('Great headphones! The sound quality is superb but it is a bit expensive.')">Review 3</button>
+        </div>
+
+        <p id="loading">Loading...</p>
+
+        <div id="output" style="display: none;">
+            <h3>Structured Review Data</h3>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Summary</td>
+                    <td id="summary"></td>
+                </tr>
+                <tr>
+                    <td>Sentiment</td>
+                    <td id="sentiment"></td>
+                </tr>
+                <tr>
+                    <td>Features</td>
+                    <td id="features"></td>
+                </tr>
+                <tr>
+                    <td>Pros</td>
+                    <td id="pros"></td>
+                </tr>
+                <tr>
+                    <td>Cons</td>
+                    <td id="cons"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function clearTable() {
+            document.getElementById('summary').innerText = '';
+            document.getElementById('sentiment').innerText = '';
+            document.getElementById('features').innerText = '';
+            document.getElementById('pros').innerText = '';
+            document.getElementById('cons').innerText = '';
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('output').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('output').style.display = 'block';
+        }
+
+        function sendReview() {
+            const reviewText = document.getElementById('reviewText').value;
+
+            clearTable();
+            showLoading();
+
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'review_text=' + encodeURIComponent(reviewText)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('summary').innerText = data.summary;
+                document.getElementById('sentiment').innerText = data.sentiment;
+                const sentimentEmoji = data.sentiment === 'positive' ? '👍' : data.sentiment === 'negative' ? '👎' : '😐';
+                document.getElementById('sentiment').innerText += ` ${sentimentEmoji}`;
+                document.getElementById('features').innerText = data.features.join(', ');
+                document.getElementById('pros').innerText = data.pros.length > 0 ? data.pros.join(', ') : '-';
+                document.getElementById('cons').innerText = data.cons.length > 0 ? data.cons.join(', ') : '-';
+                hideLoading();  // Make sure to hide the loading indicator after data is received
+            })
+            .catch(() => {
+                hideLoading();  // Hide the loading indicator even if an error occurs
+            });
+        }
+
+        function prefillReview(review) {
+            document.getElementById('reviewText').value = review;
+            sendReview();
+        }
+    </script>
+</body>
+</html>
