@@ -7,8 +7,14 @@ This sample app is based on OpenAI's original Python example: https://github.com
 """
 
 from dotenv import load_dotenv
-from flask import (Flask, Response, jsonify, render_template, request,
-                   stream_with_context)
+from flask import (
+    Flask,
+    Response,
+    jsonify,
+    render_template,
+    request,
+    stream_with_context,
+)
 from model.openai_model import OpenAIModel
 
 load_dotenv(dotenv_path=".env")
