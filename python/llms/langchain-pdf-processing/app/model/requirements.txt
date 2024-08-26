@@ -1,0 +1,6 @@
+langchain==0.2.14
+langchain-community==0.2.12
+langchain-openai==0.1.22
+openlayer>=0.2.0a21
+pypdf==4.3.1
+pydantic==2.8.2

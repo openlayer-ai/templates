@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='icons.png') }}" alt="OpenAI + Openlayer Logo" />
+      </div>
+    <h2 style="text-align: center;">Extracted CV Details</h2>
+
+    <table border="1" style="width: 50%; margin: 20px auto; text-align: left;">
+        <tr>
+            <th>Name</th>
+            <td>{{ name }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ email }}</td>
+        </tr>
+        <tr>
+            <th>LinkedIn</th>
+            <td>{{ linkedin_profile_url }}</td>
+        </tr>
+        <tr>
+            <th>GitHub</th>
+            <td>{{ github_profile_url }}</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <a href="/">Upload Another CV</a>
+    </div>
+
+</body>
+</html>
