@@ -1,0 +1,74 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+}
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+#loading {
+  display: none;
+  margin-top: 20px;
+  font-style: italic;
+}
+.header {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items vertically */
+  justify-content: flex-start; /* Align items to the start of the container */
+  background-color: white;
+  width: 100%; /* Ensure the header spans the full width */
+  padding: 10px 0; /* Add some vertical padding */
+}
+.header img {
+  height: 20px;
+  margin-right: 10px;
+}
+.upload-area {
+  width: 300px;
+  height: 200px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 16px;
+  color: #ccc;
+  margin: 20px auto;
+}
+.upload-area:hover {
+  cursor: pointer;
+  border-color: #aaa;
+}
+.upload-area.dragging {
+  background-color: #f0f0f0;
+}
+#loading {
+  display: none;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}

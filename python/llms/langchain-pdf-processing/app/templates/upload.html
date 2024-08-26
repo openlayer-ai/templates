@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='icons.png') }}" alt="OpenAI + Openlayer Logo" />
+    </div>
+    <h2 style="text-align: center;">Upload CV</h2>
+    <p style="text-align: center;">Drag and drop a CV in PDF format. The LLM (built with LangChain) will extract some structured information from it.</p>
+
+
+    <p style="text-align: center;">All model interactions are monitored by Openlayer. You can see the requests on the <a
+        href="https://app.openlayer.com/" target="_blank">Openlayer platform</a>.</p>
+
+    <form id="upload-form" action="/" method="POST" enctype="multipart/form-data">
+        <div class="upload-area" id="uploadfile">
+            Drag & Drop CV Here or Click to Upload
+        </div>
+        <input type="file" name="file" id="file" style="display: none;" accept="application/pdf">
+        <br>
+        <button type="submit" style="display: block; margin: 20px auto;">Upload</button>
+    </form>
+
+    <form action="/" method="POST" style="text-align: center;">
+        <label for="sample_cv">Or use a sample CV:</label>
+        <select name="sample_cv" id="sample_cv">
+            <option value="./data/cv_1.pdf">Sample CV 1</option>
+            <option value="./data/cv_2.pdf">Sample CV 2</option>
+            <option value="./data/cv_3.pdf">Sample CV 3</option>
+        </select>
+        <br><br>
+        <button type="submit">Use Sample CV</button>
+    </form>
+
+    <div id="loading">
+        <p>Processing... Please wait.</p>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadfile');
+        const fileInput = document.getElementById('file');
+        const uploadForm = document.getElementById('upload-form');
+        const loading = document.getElementById('loading');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragging');
+        });
+
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragging'));
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragging');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                loading.style.display = 'block';
+                uploadForm.submit();
+            }
+        });
+
+        uploadForm.addEventListener('submit', () => {
+            loading.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
