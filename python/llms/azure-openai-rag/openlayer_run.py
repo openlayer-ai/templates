@@ -13,8 +13,9 @@ where we wrapped the OpenAI client with Openlayer's Python SDK `OpenAIMonitor`
 and decorated the methods we wanted to trace with `@tracer.trace()`.
 """
 
-from app.model import rag_pipeline
 from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
+
+from app.model import rag_pipeline
 
 
 class OpenAIModelInterface(OpenlayerModel):

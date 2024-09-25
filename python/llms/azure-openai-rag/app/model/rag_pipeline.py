@@ -1,6 +1,7 @@
 """Module for my RAG pipeline."""
 
 import os
+from typing import List
 
 import numpy as np
 import openai
@@ -17,8 +18,14 @@ class RagPipeline:
     The main method is `query`, which answers to a user query with the LLM."""
 
     def __init__(self):
-        # Wrap OpenAI client with Openlayer's `trace_openai` to trace it
-        self.openai_client = trace_openai(openai.OpenAI())
+        # Wrap the Azure OpenAI client with Openlayer's `trace_openai` to trace it
+        self.openai_client = trace_openai(
+            openai.AzureOpenAI(
+                api_key=os.environ.get("AZURE_OPENAI_API_KEY"),
+                api_version="2024-02-01",
+                azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
+            )
+        )
 
         self.vectorizer = TfidfVectorizer()
         with open(CONTEXT_PATH, "r", encoding="utf-8") as file:
@@ -32,13 +39,13 @@ class RagPipeline:
 
         Answers to a user query with the LLM.
         """
-        context = self.retrieve_context(user_query)
-        prompt = self.inject_prompt(user_query, context)
+        contexts = self.retrieve_contexts(user_query)
+        prompt = self.inject_prompt(user_query, contexts)
         answer = self.generate_answer_with_gpt(prompt)
         return answer
 
     @trace()
-    def retrieve_context(self, query: str) -> str:
+    def retrieve_contexts(self, query: str) -> List[str]:
         """Context retriever.
 
         Given the query, returns the most similar context (using TFIDF).
@@ -48,17 +55,21 @@ class RagPipeline:
             query_vector, self.tfidf_matrix
         ).flatten()
         most_relevant_idx = np.argmax(cosine_similarities)
-        return self.context_sections[most_relevant_idx]
+        contexts = [self.context_sections[most_relevant_idx]]
+        return contexts
 
-    @trace()
-    def inject_prompt(self, query: str, context: str):
+    # You can also specify the name of the `context_kwarg` to unlock RAG metrics that
+    # evaluate the performance of the context retriever. The value of the `context_kwarg`
+    # should be a list of strings.
+    @trace(context_kwarg="contexts")
+    def inject_prompt(self, query: str, contexts: List[str]):
         """Combines the query with the context and returns
         the prompt (formatted to conform with OpenAI models)."""
         return [
             {"role": "system", "content": "You are a helpful assistant."},
             {
                 "role": "user",
-                "content": f"Answer the user query using only the following context: {context}. \nUser query: {query}",
+                "content": f"Answer the user query using only the following context: {contexts[0]}. \nUser query: {query}",
             },
         ]
 
@@ -67,6 +78,6 @@ class RagPipeline:
         """Forwards the prompt to GPT and returns the answer."""
         response = self.openai_client.chat.completions.create(
             messages=prompt,
-            model="gpt-3.5-turbo",
+            model=os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME"),
         )
         return response.choices[0].message.content.strip()
