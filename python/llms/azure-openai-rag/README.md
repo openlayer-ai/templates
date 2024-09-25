@@ -1,6 +1,6 @@
 # RAG + Openlayer (Python)
 
-This template shows how to set up Openlayer with a project built with using a **RAG pipeline in Python**. It
+This template shows how to set up Openlayer with a project built with using a **RAG pipeline that uses Azure OpenAI in Python**. It
 features Openlayer's:
 
 - **development** mode: used to test your AI system automatically using CI / CD.
@@ -37,8 +37,8 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 
 ## How it works
 
-Decorating the methods we're interested in tracing with `@trace` from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/sdk/libraries/python) allows us to keep track of their inputs, outputs, metadata, and more. Furthermore, wrapping the OpenAI client with the `trace_openai` function from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/sdk/libraries/python) enables tracing for
-every chat completion call. All of this is done in [`app/model/rag_pipeline.py`](/python/llms/rag-qa/app/model/rag_pipeline.py), where our RAG pipeline is defined.
+Decorating the methods we're interested in tracing with `@trace` from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/sdk/libraries/python) allows us to keep track of their inputs, outputs, metadata, and more. Furthermore, wrapping the Azure OpenAI client with the `trace_openai` function from [Openlayer's Python SDK](https://www.openlayer.com/docs/api-reference/sdk/libraries/python) enables tracing for
+every chat completion call. All of this is done in [`app/model/rag_pipeline.py`](/python/llms/azure-openai-rag/app/model/rag_pipeline.py), where our RAG pipeline is defined.
 
 ### Monitoring
 
@@ -46,8 +46,8 @@ All production requests that go through the decorated code are automatically str
 
 ### Development
 
-The [`openlayer.json`](/python/llms/rag-qa/openlayer.json) config file and the [`openlayer_run.py`](/python/llms/rag-qa/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
+The [`openlayer.json`](/python/llms/azure-openai-rag/openlayer.json) config file and the [`openlayer_run.py`](/python/llms/azure-openai-rag/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
 
 With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
 
-Note that wrapping the OpenAI client with the `trace_openai` function enables tracing, tokens, and cost tracking in development mode as well.
+Note that wrapping the Azure OpenAI client with the `trace_openai` function enables tracing, tokens, and cost tracking in development mode as well.
