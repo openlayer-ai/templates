@@ -1,0 +1,80 @@
+[
+    {
+        "name": "Mean context recall greater than 0.9",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "contextRecall",
+                "operator": ">",
+                "value": 0.9
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "1b3fca31-cf49-4ea3-9921-ba91bb57d8b0"
+    },
+    {
+        "name": "Response is polite",
+        "description": {},
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Polite response",
+                                "criteria": "Make sure the response is polite. Return 'Yes' if it is polite, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "7a609e02-5625-48fd-9dd7-b21d21b4bbf8"
+    },
+    {
+        "name": "Maximum character length of 300",
+        "description": {},
+        "type": "integrity",
+        "subtype": "characterLength",
+        "thresholds": [
+            {
+                "insightName": "characterLength",
+                "insightParameters": [
+                    {
+                        "name": "column_name",
+                        "value": "openlayer_output"
+                    }
+                ],
+                "measurement": "maxCharacterLength",
+                "operator": "<=",
+                "value": 300
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e"
+    }
+]
