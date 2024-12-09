@@ -14,5 +14,6 @@
       "label": "validation",
       "groundTruthColumnName": "ground_truth"
     }
-  ]
+  ],
+  "testsPath": "tests.json"
 }
