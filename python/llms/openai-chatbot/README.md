@@ -48,6 +48,6 @@ All production requests that go through the client wrapped with the `trace_opena
 
 The [`openlayer.json`](/python/llms/openai-chatbot/openlayer.json) config file and the [`openlayer_run.py`](/python/llms/openai-chatbot/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
 
-With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
+With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the [`tests.json`](/python/llms/openai-chatbot/tests.json) file or in the Openlayer platform.
 
 Note that wrapping the OpenAI client with the `trace_openai` function enables tracing, tokens, and cost tracking in development mode as well.
