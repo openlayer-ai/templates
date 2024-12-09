@@ -1,0 +1,80 @@
+[
+    {
+        "name": "Ensure all outputs are valid JSON",
+        "description": {},
+        "type": "integrity",
+        "subtype": "isJson",
+        "thresholds": [
+            {
+                "insightName": "isJson",
+                "insightParameters": [
+                    {
+                        "name": "column_name",
+                        "value": "openlayer_output"
+                    }
+                ],
+                "measurement": "isJsonRowPercentage",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "syncId": "1b3fca31-cf49-4ea3-9921-ba91bb57d8b0"
+    },
+    {
+        "name": "Summary with friendly tone",
+        "description": {},
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Friendly summary",
+                                "criteria": "Make sure the value of the `summary` field is friendly. Return 'Yes' if it is friendly, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "7a609e02-5625-48fd-9dd7-b21d21b4bbf8"
+    },
+    {
+        "name": "Maximum response latency of 5 seconds",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "maxLatency",
+                "operator": "<",
+                "value": 5000
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e"
+    }
+]
