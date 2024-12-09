@@ -13,6 +13,7 @@ where we defined our model (the `ReviewExtractorModel` class, which uses Anthrop
 Claude).
 """
 
+import json
 from openlayer.lib.core.base_model import OpenlayerModel, RunReturn
 
 from app.model import review_extractor
@@ -34,7 +35,7 @@ class ProductReviewerModelInterface(OpenlayerModel):
         response: review_extractor.StructuredReview = self.model.extract(
             review=review,
         )
-        output = response.model_dump()
+        output = json.dumps(response.model_dump())
         return RunReturn(output=output, other_fields={})
 
 

@@ -48,6 +48,6 @@ All production requests that go through the client wrapped with the `trace_anthr
 
 The [`openlayer.json`](/python/llms/anthropic-structured-outputs/openlayer.json) config file and the [`openlayer_run.py`](/python/llms/anthropic-structured-outputs/openlayer_run.py) script together allow Openlayer to call your AI system and discover your datasets.
 
-With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the app and update them as your system evolves.
+With this, every new commit you push is run against your tests on Openlayer in CI / CD. You can define your tests in the [`tests.json`](/python/llms/anthropic-structured-outputs/tests.json) file or in the Openlayer platform.
 
 Note that wrapping the Anthropic client with the `trace_anthropic` function enables tracing, tokens, and cost tracking in development mode as well.

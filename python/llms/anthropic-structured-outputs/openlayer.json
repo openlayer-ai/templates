@@ -13,5 +13,6 @@
       "path": "dataset.json",
       "label": "validation"
     }
-  ]
+  ],
+  "testsPath": "tests.json"
 }
