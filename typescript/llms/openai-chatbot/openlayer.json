@@ -20,5 +20,6 @@
                 "split": "validation"
             }
         }
-    ]
+    ],
+    "testsPath": "tests.json"
 }
