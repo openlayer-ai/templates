@@ -1,6 +1,6 @@
-# Anthropic + Openlayer (Python)
+# Structured outputs with Anthropic
 
-This template shows how to set up Openlayer with a project built with **Anthropic using Python**. It
+This template shows how Openlayer can be used with a project that uses **Anthropic** to extract structured outputs from text. It
 features Openlayer's:
 
 - **development** mode: used to test your AI system automatically using CI / CD.
@@ -26,6 +26,8 @@ python app/server.py
 ```
 
 Navigate to `localhost:5000` and send a few requests to the model. You should see these appear in the monitoring mode of your [Openlayer project](https://app.openlayer.com/).
+
+Alternatively, you can run the [`openlayer_monitoring.py`](/python/llms/anthropic-structured-outputs/openlayer_monitoring.py) script to simulate running your system in production, to stream your system's data and metadata to Openlayer.
 
 ### Development
 

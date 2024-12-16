@@ -1,4 +1,4 @@
-anthropic==0.34.1
+anthropic==0.40.0
 flask==3.0.3
 instructor==1.4.0
 openlayer>=0.2.0a21

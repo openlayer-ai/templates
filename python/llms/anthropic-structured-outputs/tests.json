@@ -26,7 +26,7 @@
         "syncId": "1b3fca31-cf49-4ea3-9921-ba91bb57d8b0"
     },
     {
-        "name": "Summary with friendly tone",
+        "name": "Generated summary has a friendly tone",
         "description": {},
         "type": "performance",
         "subtype": "llmRubricThresholdV2",
@@ -58,6 +58,37 @@
         "syncId": "7a609e02-5625-48fd-9dd7-b21d21b4bbf8"
     },
     {
+        "name": "Pros/Cons match sentiment",
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Sentiment consistency",
+                                "criteria": "Check if: positive sentiment has pros, negative sentiment has cons, neutral has both or neither. Return 'Yes' if consistent, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 0.9
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "0ee6f926-8322-4ba7-8d72-6a4bab5f0ac6"
+    },
+    {
         "name": "Maximum response latency of 5 seconds",
         "description": {},
         "type": "performance",
@@ -76,5 +107,232 @@
         "usesTrainingDataset": false,
         "usesMlModel": true,
         "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e"
+    },
+    {
+        "name": "Summary is concise",
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Concise summary",
+                                "criteria": "Check if the summary is between 10 and 100 words. Return 'Yes' if within range, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 0.95
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "3b3b7565-47fe-41f0-820f-a7ddc92e9e95"
+    },
+    {
+        "name": "Token usage within limits",
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "maxTokens",
+                "operator": "<",
+                "value": 1024
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "66884585-c84a-4345-a4e2-397e6fb25122"
+    },
+    {
+        "name": "Ensure all outputs are valid JSON",
+        "description": {},
+        "type": "integrity",
+        "subtype": "isJson",
+        "thresholds": [
+            {
+                "insightName": "isJson",
+                "insightParameters": [
+                    {
+                        "name": "column_name",
+                        "value": "openlayer_output"
+                    }
+                ],
+                "measurement": "isJsonRowPercentage",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "5e832c0a-d143-4bf8-99ff-8e25cc1f971b"
+    },
+    {
+        "name": "Generated summary has a friendly tone",
+        "description": {},
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Friendly summary",
+                                "criteria": "Make sure the value of the `summary` field is friendly. Return 'Yes' if it is friendly, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "4149169b-cf34-404b-bd95-c433d83ddf7d"
+    },
+    {
+        "name": "Pros/Cons match sentiment",
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Sentiment consistency",
+                                "criteria": "Check if: positive sentiment has pros, negative sentiment has cons, neutral has both or neither. Return 'Yes' if consistent, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 0.9
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "c216fe5d-aa9c-4078-a19f-5108f75ae31e"
+    },
+    {
+        "name": "Maximum response latency of 5 seconds",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "maxLatency",
+                "operator": "<",
+                "value": 5000
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "80ac8ed1-56fe-4530-887f-51c6af7f8272"
+    },
+    {
+        "name": "Summary is concise",
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Concise summary",
+                                "criteria": "Check if the summary is between 10 and 100 words. Return 'Yes' if within range, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 0.95
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "4ef1a13c-a77f-4151-90cf-1cfde195652e"
+    },
+    {
+        "name": "Token usage within limits",
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "maxTokens",
+                "operator": "<",
+                "value": 1024
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "f1e38c99-00a1-4cb0-bbc7-3b37944fdcbb"
     }
 ]

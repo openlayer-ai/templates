@@ -35,7 +35,10 @@ class ProductReviewerModelInterface(OpenlayerModel):
         response: review_extractor.StructuredReview = self.model.extract(
             review=review,
         )
-        output = json.dumps(response.model_dump())
+        try:
+            output = json.dumps(response.model_dump())
+        except json.JSONDecodeError:
+            output = str(response.model_dump())
         return RunReturn(output=output, other_fields={})
 
 
