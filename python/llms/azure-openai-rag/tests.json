@@ -20,6 +20,26 @@
         "syncId": "1b3fca31-cf49-4ea3-9921-ba91bb57d8b0"
     },
     {
+        "name": "Mean context precision greater than 0.75",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "contextRelevancy",
+                "operator": ">",
+                "value": 0.75
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "45b0a081-1ad1-4f23-aeaa-361c0f66a483"
+    },
+    {
         "name": "Response is polite",
         "description": {},
         "type": "performance",
@@ -52,6 +72,37 @@
         "syncId": "7a609e02-5625-48fd-9dd7-b21d21b4bbf8"
     },
     {
+        "name": "Response uses provided context",
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Context usage",
+                                "criteria": "Check if the response uses information from the provided context. Return 'Yes' if it does, 'No' if it appears to use external knowledge.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 0.95
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "4c3473db-f734-46c2-ab47-884b69ca3920"
+    },
+    {
         "name": "Maximum character length of 300",
         "description": {},
         "type": "integrity",
@@ -76,5 +127,149 @@
         "usesTrainingDataset": false,
         "usesMlModel": false,
         "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e"
+    },
+    {
+        "name": "Mean context recall greater than 0.9",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "contextRecall",
+                "operator": ">",
+                "value": 0.9
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "1ba3912e-9876-4087-9b99-c3ad1f793a57"
+    },
+    {
+        "name": "Mean context precision greater than 0.75",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "contextRelevancy",
+                "operator": ">",
+                "value": 0.75
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "6e8c90c8-794e-48e7-b190-01e1ba448c22"
+    },
+    {
+        "name": "Response is polite",
+        "description": {},
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Polite response",
+                                "criteria": "Make sure the response is polite. Return 'Yes' if it is polite, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "91fab601-5d02-4dee-85fe-f7c51f5f4dcb"
+    },
+    {
+        "name": "Response uses provided context",
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Context usage",
+                                "criteria": "Check if the response uses information from the provided context. Return 'Yes' if it does, 'No' if it appears to use external knowledge.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 0.95
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "82b456c0-fb6c-40db-beae-0d0580cc97d1"
+    },
+    {
+        "name": "Maximum character length of 300",
+        "description": {},
+        "type": "integrity",
+        "subtype": "characterLength",
+        "thresholds": [
+            {
+                "insightName": "characterLength",
+                "insightParameters": [
+                    {
+                        "name": "column_name",
+                        "value": "openlayer_output"
+                    }
+                ],
+                "measurement": "maxCharacterLength",
+                "operator": "<=",
+                "value": 300
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesProductionData": true,
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "c195c3e3-e2e4-4d8f-bc7d-ba35ed065265"
     }
 ]
