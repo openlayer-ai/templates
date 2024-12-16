@@ -1,6 +1,6 @@
-# LangChain + Openlayer (Python)
+# PDF processing with LangChain
 
-This template shows how to set up Openlayer with a project built with **LangChain using Python**. It
+This template shows how Openlayer can be used with a project built with **LangChain** to extract structured data from a PDF. It
 features Openlayer's:
 
 - **development** mode: used to test your AI system automatically using CI / CD.
@@ -26,6 +26,8 @@ python app/server.py
 ```
 
 Navigate to `localhost:5000` and send a few requests to the model. You should see these appear in the monitoring mode of your [Openlayer project](https://app.openlayer.com/).
+
+Alternatively, you can run the [`openlayer_monitoring.py`](/python/llms/langchain-pdf-processing/openlayer_monitoring.py) script to simulate running your system in production, to stream your system's data and metadata to Openlayer.
 
 ### Development
 
