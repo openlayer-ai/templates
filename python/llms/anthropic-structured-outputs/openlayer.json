@@ -14,5 +14,49 @@
       "label": "validation"
     }
   ],
-  "testsPath": "tests.json"
+  "testsPath": "tests.json",
+  "metrics": {
+    "settings": [
+      {
+        "key": "conciseness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "maliciousness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "totalCost",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "maxCost",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "meanTokens",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "meanLatency",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "meanLatency",
+        "starred": false,
+        "selected": true
+      },
+      {
+        "key": "maxLatency",
+        "starred": false,
+        "selected": true
+      }
+    ]
+  }
 }
