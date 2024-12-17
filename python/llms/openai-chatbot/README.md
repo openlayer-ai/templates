@@ -27,6 +27,8 @@ python app/server.py
 
 Navigate to `localhost:5000` and send a few requests to the model. You should see these appear in the monitoring mode of your [Openlayer project](https://app.openlayer.com/).
 
+Alternatively, you can run the [`openlayer_monitoring.py`](/python/llms/openai-chatbot/openlayer_monitoring.py) script to simulate running your system in production, to stream your system's data and metadata to Openlayer.
+
 ### Development
 
 1. Create a GitHub repo that is a clone of this template.
