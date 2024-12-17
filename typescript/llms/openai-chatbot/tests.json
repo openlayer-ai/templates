@@ -20,6 +20,26 @@
         "syncId": "1b3fca31-cf49-4ea3-9921-ba91bb57d8b0"
     },
     {
+        "name": "Mean answer relevancy greater than 0.8",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "answerRelevancy",
+                "operator": ">",
+                "value": 0.8
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "bfac860a-682d-415b-bd30-fd7ae2957ef2"
+    },
+    {
         "name": "Response is polite",
         "description": {},
         "type": "performance",
@@ -96,5 +116,181 @@
         "usesTrainingDataset": false,
         "usesMlModel": false,
         "syncId": "96622fba-ea00-4e42-8f42-5e8f5f60805e"
+    },
+    {
+        "name": "Maximum response latency of 5 seconds",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "maxLatency",
+                "operator": "<",
+                "value": 5000
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "development",
+        "usesValidationDataset": true,
+        "usesTrainingDataset": false,
+        "usesMlModel": true,
+        "syncId": "bdca7e81-eb1b-4b39-a97f-97045c7fdf4d"
+    },
+    {
+        "name": "Mean correctness greater than 0.9",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "correctness",
+                "operator": ">",
+                "value": 0.9
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "usesProductionData": true,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "1f5e18b7-d3fc-43bb-9b24-061d76475f12"
+    },
+    {
+        "name": "Mean answer relevancy greater than 0.8",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "answerRelevancy",
+                "operator": ">",
+                "value": 0.8
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "usesProductionData": true,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "64386fbe-2ecb-46c8-a281-32c68273391f"
+    },
+    {
+        "name": "Response is polite",
+        "description": {},
+        "type": "performance",
+        "subtype": "llmRubricThresholdV2",
+        "thresholds": [
+            {
+                "insightName": "llmRubricV2",
+                "insightParameters": [
+                    {
+                        "name": "criteria_list",
+                        "value": [
+                            {
+                                "name": "Polite response",
+                                "criteria": "Make sure the response is polite. Return 'Yes' if it is polite, 'No' otherwise.",
+                                "scoring": "Yes or No"
+                            }
+                        ]
+                    }
+                ],
+                "measurement": "criteria0MeanScore",
+                "operator": ">=",
+                "value": 1.0
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "usesProductionData": true,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "cf26c044-2034-43f3-b17a-824a2ad0413a"
+    },
+    {
+        "name": "Mean semantic similarity greater than 0.9",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "meanSemanticSimilarity",
+                "operator": ">",
+                "value": 0.9
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "usesProductionData": true,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "e30311e2-d111-4d94-ba7b-d9226b375f28"
+    },
+    {
+        "name": "Maximum character length of 100",
+        "description": {},
+        "type": "integrity",
+        "subtype": "characterLength",
+        "thresholds": [
+            {
+                "insightName": "characterLength",
+                "insightParameters": [
+                    {
+                        "name": "column_name",
+                        "value": "openlayer_output"
+                    }
+                ],
+                "measurement": "maxCharacterLength",
+                "operator": "<=",
+                "value": 100
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "usesProductionData": true,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "edcbcf78-0d5e-423b-b4fc-014fec73aae7"
+    },
+    {
+        "name": "Maximum response latency of 5 seconds",
+        "description": {},
+        "type": "performance",
+        "subtype": "metricThreshold",
+        "thresholds": [
+            {
+                "insightName": "metrics",
+                "measurement": "maxLatency",
+                "operator": "<",
+                "value": 5000
+            }
+        ],
+        "subpopulationFilters": null,
+        "mode": "monitoring",
+        "usesValidationDataset": false,
+        "usesTrainingDataset": false,
+        "usesMlModel": false,
+        "usesProductionData": true,
+        "evaluationWindow": 86400,
+        "delayWindow": 0,
+        "syncId": "df77fc3e-d55a-4885-8406-c832fdfdc853"
     }
 ]
