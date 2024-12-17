@@ -11,10 +11,26 @@ important methods are decorated with `@trace()`, the calls to the model will be
 traced and sent to Openlayer.
 """
 
-from app.model import rag_pipeline
+import os
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=".env")
+
+# Check for required environment variables and prompt if missing
+required_env_vars = {
+    "OPENLAYER_API_KEY": "Enter your Openlayer API key: ",
+    "AZURE_OPENAI_ENDPOINT": "Enter your Azure OpenAI endpoint: ",
+    "AZURE_OPENAI_KEY": "Enter your Azure OpenAI key: ",
+    "AZURE_OPENAI_DEPLOYMENT_NAME": "Enter your Azure OpenAI deployment name: ",
+    "OPENLAYER_INFERENCE_PIPELINE_ID": "Enter your Openlayer inference pipeline ID: ",
+}
+
+for var, prompt in required_env_vars.items():
+    if not os.getenv(var):
+        value = input(prompt)
+        os.environ[var] = value
+
+from app.model import rag_pipeline
 
 if __name__ == "__main__":
 
