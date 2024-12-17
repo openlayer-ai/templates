@@ -15,5 +15,49 @@
       "groundTruthColumnName": "ground_truth"
     }
   ],
-  "testsPath": "tests.json"
+  "testsPath": "tests.json",
+  "metrics": {
+    "settings": [
+      {
+        "key": "maliciousness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "answerRelevancy",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "faithfulness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "conciseness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "correctness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "coherence",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "harmfulness",
+        "starred": true,
+        "selected": true
+      },
+      {
+        "key": "meanSemanticSimilarity",
+        "starred": true,
+        "selected": true
+      }
+    ]
+  }
 }
