@@ -1,0 +1,14 @@
+[
+    {
+        "input_data": "Who were the founders of Apple?",
+        "ground_truth": "Steve Wozniak, Steve Jobs, and Ronald Wayne"
+    },
+    {
+        "input_data": "When did Apple go public?",
+        "ground_truth": "1980"
+    },
+    {
+        "input_data": "What's the weather like today?",
+        "ground_truth": "I don't know, I don't have access to weather information."
+    }
+]
