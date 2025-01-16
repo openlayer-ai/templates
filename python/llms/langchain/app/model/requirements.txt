@@ -1,4 +1,4 @@
-openai==1.12.0
-openlayer==0.2.0a9
-langchain==0.1.9
-langchain-openai==0.0.8
+openai==1.59.7
+openlayer==0.2.0a42
+langchain==0.3.14
+langchain-openai==0.3.0
