@@ -1,0 +1,7 @@
+flask==3.0.2
+numpy<2.0.0
+openlayer>=0.2.0a42
+pandas==2.2.3
+python-dotenv==1.0.1
+scikit-learn==1.5.2
+sentence-transformers==3.2.0
