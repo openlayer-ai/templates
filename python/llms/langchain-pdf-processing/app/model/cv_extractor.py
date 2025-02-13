@@ -8,7 +8,7 @@ the `OpenlayerHandler` to trace all the calls to the model.
 from typing import Optional
 
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_openai.chat_models import ChatOpenAI
 from openlayer.lib import trace
 from openlayer.lib.integrations.langchain_callback import OpenlayerHandler
