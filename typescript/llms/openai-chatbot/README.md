@@ -19,7 +19,7 @@ Now, every commit you push to the repo will be automatically tested by Openlayer
 
 ## How it works
 
-We call OpenAI's `createChatCompletion` method by using the `OpenAIMonitor` from [Openlayer's TypeScript SDK](https://github.com/openlayer-ai/openlayer-ts). This enables tracing for
+We call OpenAI's `chat.completions.create` method by using the `traceOpenAI` from [Openlayer's TypeScript SDK](https://github.com/openlayer-ai/openlayer-ts). This enables tracing for
 every chat completion call. You can find the code in [`src/models/myModel.ts`](/typescript/llms/openai-chatbot/src/models/myModel.ts), where our LLM is defined.
 
 ### Monitoring
