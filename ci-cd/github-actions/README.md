@@ -38,7 +38,7 @@ jobs:
         with:
           python-version: 3.9
       - name: Install Openlayer CLI
-        run: curl -o- "https://downloads.openlayer.com/cli/install/linux_arm64.sh" | sh
+        run: curl -o- "https://downloads.openlayer.com/cli/install/linux_64.sh" | sh
       - name: Install Your Requirements
         run: openlayer install
       - name: Generate Outputs
