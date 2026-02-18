@@ -45,6 +45,8 @@ def stream():
     def generate():
         assistant_response_content = ""
         for chunk in model.create_chat_completion(messages=chat_history, stream=True):
+            if not chunk.choices:
+                continue
             if chunk.choices[0].delta and chunk.choices[0].delta.content:
                 # Accumulate the content only if it's not None
                 assistant_response_content += chunk.choices[0].delta.content
