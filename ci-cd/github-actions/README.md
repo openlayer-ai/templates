@@ -44,7 +44,10 @@ jobs:
       - name: Generate Outputs
         run: openlayer batch
       - name: Push Project Artifacts to Openlayer
-        run: openlayer push --message ${{ github.event.head_commit.message }} --api-key=${{ secrets.OPENLAYER_API_KEY }}
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          OPENLAYER_API_KEY: ${{ secrets.OPENLAYER_API_KEY }}
+        run: openlayer push --message "$COMMIT_MESSAGE"
 ```
 
 This Action will run when your code is pushed to a git branch. `openlayer push` will wait for the results and cause the Action to fail if any of your tests failed.
