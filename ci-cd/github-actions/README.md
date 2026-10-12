@@ -36,7 +36,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: "3.11"
       - name: Install Openlayer CLI
         run: curl -o- "https://downloads.openlayer.com/cli/install/linux_64.sh" | sh
       - name: Install Your Requirements
