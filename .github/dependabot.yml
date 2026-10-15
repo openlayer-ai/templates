@@ -1,0 +1,47 @@
+# Monthly version updates so the example templates don't drift onto
+# vulnerable releases. Security updates are opened as soon as an advisory
+# lands, independent of this schedule.
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directories:
+      - "/ci-cd/github-actions"
+      - "/ci-cd/github-actions/app/model"
+      - "/python/llms/anthropic-structured-outputs"
+      - "/python/llms/anthropic-structured-outputs/app/model"
+      - "/python/llms/azure-openai-rag"
+      - "/python/llms/azure-openai-rag/app/model"
+      - "/python/llms/langchain-pdf-processing"
+      - "/python/llms/langchain-pdf-processing/app/model"
+      - "/python/llms/openai-chatbot"
+      - "/python/llms/openai-chatbot/app/model"
+      - "/python/tabular-classification/scikit-learn/churn-predictor"
+      - "/python/tabular-classification/scikit-learn/churn-predictor/app/model"
+      - "/python/tabular-regression/scikit-learn/diabetes-predictor"
+      - "/python/tabular-regression/scikit-learn/diabetes-predictor/app/model"
+      - "/python/text-classification/scikit-learn/profanity-classifier"
+      - "/python/text-classification/scikit-learn/profanity-classifier/app/model"
+    schedule:
+      interval: "monthly"
+    groups:
+      python-templates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: "npm"
+    directories:
+      - "/typescript/llms/openai-chatbot"
+    schedule:
+      interval: "monthly"
+    groups:
+      typescript-templates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    open-pull-requests-limit: 5

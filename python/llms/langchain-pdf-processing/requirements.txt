@@ -7,3 +7,8 @@ pypdf==6.20.1
 pydantic==2.8.2
 python-dotenv==1.2.2
 
+# Minimum patched versions for transitive dependencies
+aiohttp>=3.14.3
+httpcore2>=2.10.0
+httpx2>=2.12.0
+tqdm>=4.66.3
