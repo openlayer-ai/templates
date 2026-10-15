@@ -14,7 +14,7 @@
     "@types/node": "^20.12.2",
     "commander": "^12.0.0",
     "dotenv": "^16.6.1",
-    "openai": "^4.104.0",
+    "openai": "^7.32.0",
     "openlayer": "^0.33.0",
     "typescript": "^5.4.3"
   },
