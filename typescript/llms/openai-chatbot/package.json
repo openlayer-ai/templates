@@ -16,7 +16,7 @@
     "dotenv": "^16.6.1",
     "openai": "^4.104.0",
     "openlayer": "^0.33.0",
-    "typescript": "^5.4.3"
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
     "tsx": "^4.23.0"
