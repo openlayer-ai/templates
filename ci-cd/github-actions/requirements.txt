@@ -23,4 +23,4 @@ typing_extensions==4.13.2
 Werkzeug>=3.1.9
 
 # Minimum patched versions for transitive dependencies
-requests>=2.33.0
+requests>=2.34.2
