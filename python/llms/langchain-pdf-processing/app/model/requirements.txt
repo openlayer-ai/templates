@@ -3,7 +3,7 @@ langchain-community==0.4.2
 langchain-openai==1.7.1
 openlayer>=0.2.0a42
 pypdf==6.20.1
-pydantic==2.8.2
+pydantic==2.14.1
 
 # Minimum patched versions for transitive dependencies
 aiohttp>=3.14.3

@@ -1,5 +1,5 @@
 anthropic==0.40.0
-instructor==1.4.0
+instructor==1.17.0
 openlayer>=0.2.0a90
 numpy<2.0.0
 
