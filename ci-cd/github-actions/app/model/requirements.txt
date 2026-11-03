@@ -3,5 +3,7 @@ openlayer==0.36.0
 
 # Minimum patched versions for transitive dependencies
 anyio>=4.14.2
+certifi>=2026.10.18
 idna>=3.20
+requests>=2.33.0
 tqdm>=4.70.1
